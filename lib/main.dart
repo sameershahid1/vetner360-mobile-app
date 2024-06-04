@@ -1,10 +1,10 @@
-import 'package:doctorappointment/doctor_pages/doctor_authentication/doctor_splash.dart';
-import 'package:doctorappointment/doctor_theme/doctor_theme.dart';
-import 'package:doctorappointment/doctor_theme/doctor_themecontroller.dart';
-import 'package:doctorappointment/doctor_translation/stringtranslation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:vetner360/pages/authentication/doctor_splash.dart';
+import 'package:vetner360/theme/doctor_theme.dart';
+import 'package:vetner360/theme/doctor_themecontroller.dart';
+import 'package:vetner360/doctor_translation/stringtranslation.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,9 +28,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      title: "Vetner360",
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.light,
-      theme: themedata.isdark ? DoctorMythemes.darkTheme : DoctorMythemes.lightTheme,
+      theme: themedata.isdark
+          ? DoctorMythemes.darkTheme
+          : DoctorMythemes.lightTheme,
       fallbackLocale: const Locale('en', 'US'),
       translations: DoctorApptranslation(),
       locale: const Locale('en', 'US'),
