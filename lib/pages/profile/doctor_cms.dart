@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vetner360/globalclass/doctor_color.dart';
-import 'package:vetner360/globalclass/doctor_fontstyle.dart';
-import 'package:vetner360/theme/doctor_themecontroller.dart';
+import 'package:vetner360/globalclass/color.dart';
+import 'package:vetner360/globalclass/fontstyle.dart';
+import 'package:vetner360/theme/themecontroller.dart';
 
 // ignore: must_be_immutable
 class DoctorCms extends StatefulWidget {

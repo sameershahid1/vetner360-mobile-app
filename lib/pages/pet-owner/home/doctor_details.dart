@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vetner360/globalclass/doctor_color.dart';
-import 'package:vetner360/globalclass/doctor_fontstyle.dart';
-import 'package:vetner360/globalclass/doctor_icons.dart';
+import 'package:vetner360/globalclass/color.dart';
+import 'package:vetner360/globalclass/fontstyle.dart';
+import 'package:vetner360/globalclass/icons.dart';
 import 'package:vetner360/pages/pet-owner/home/doctor_book_appointment.dart';
-import 'package:vetner360/theme/doctor_themecontroller.dart';
+import 'package:vetner360/theme/themecontroller.dart';
 
 class DoctorDetails extends StatefulWidget {
   const DoctorDetails({Key? key}) : super(key: key);

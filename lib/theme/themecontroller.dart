@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:vetner360/globalclass/doctor_prefsname.dart';
-import 'package:vetner360/theme/doctor_theme.dart';
+import 'package:vetner360/globalclass/prefsname.dart';
+import 'package:vetner360/theme/theme.dart';
 
 class DoctorThemecontroler extends GetxController {
   @override

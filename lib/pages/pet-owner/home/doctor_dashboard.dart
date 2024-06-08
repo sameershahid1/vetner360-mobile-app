@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:vetner360/globalclass/doctor_color.dart';
-import 'package:vetner360/globalclass/doctor_fontstyle.dart';
-import 'package:vetner360/globalclass/doctor_icons.dart';
+import 'package:vetner360/globalclass/color.dart';
+import 'package:vetner360/globalclass/fontstyle.dart';
+import 'package:vetner360/globalclass/icons.dart';
 import 'package:vetner360/pages/pet-owner/bookings/doctor_bookings.dart';
-import 'package:vetner360/pages/pet-owner/home/doctor_home.dart';
 import 'package:vetner360/pages/pet-owner/home/pannel.dart';
 import 'package:vetner360/pages/pet-owner/location/doctor_location.dart';
 import 'package:vetner360/pages/profile/doctor_profile.dart';
 
-import '../../../theme/doctor_themecontroller.dart';
+import '../../../theme/themecontroller.dart';
 
 // ignore: must_be_immutable
 class DoctorDashboard extends StatefulWidget {
@@ -52,7 +51,7 @@ class _DoctorDashboardState extends State<DoctorDashboard> {
               surfaceTintColor:
                   themedata.isdark ? DoctorColor.lightblack : DoctorColor.white,
               title: Center(
-                child: Text("Doctor Appointment".tr,
+                child: Text("Vetner360".tr,
                     textAlign: TextAlign.end,
                     style: ibold.copyWith(fontSize: 18)),
               ),

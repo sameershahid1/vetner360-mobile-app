@@ -3,15 +3,14 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
-import 'package:nb_utils/nb_utils.dart';
-import 'package:vetner360/globalclass/doctor_color.dart';
-import 'package:vetner360/globalclass/doctor_fontstyle.dart';
-import 'package:vetner360/globalclass/doctor_icons.dart';
+import 'package:vetner360/globalclass/color.dart';
+import 'package:vetner360/globalclass/fontstyle.dart';
+import 'package:vetner360/globalclass/icons.dart';
 import 'package:vetner360/helping/help.dart';
 import 'package:vetner360/pages/authentication/doctor_forgotpassword.dart';
 import 'package:vetner360/pages/authentication/doctor_signup.dart';
 import 'package:vetner360/pages/pet-owner/home/doctor_dashboard.dart';
-import 'package:vetner360/theme/doctor_themecontroller.dart';
+import 'package:vetner360/theme/themecontroller.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
@@ -41,7 +40,6 @@ class _DoctorSigninState extends State<DoctorSignin> {
           "password": _passwordController.text.trim(),
         };
         final url = Uri.parse("http://192.168.0.14:8080/mobile/api/login");
-        // final url = Uri.parse("http://10.8.151.203:8080/mobile/api/login");
 
         final response = await http.post(url,
             headers: {'Content-Type': 'application/json'},
@@ -74,17 +72,6 @@ class _DoctorSigninState extends State<DoctorSignin> {
     super.initState();
   }
 
-  Future<void> checkForAuth() async {
-    try {
-      final token = await Helping().getToken("token");
-      if (token != null && token.length > 0) {
-        Navigator.pop(context);
-      }
-    } catch (e) {
-      print("Error: $e");
-    }
-  }
-
   @override
   void dispose() {
     _emailController.dispose();
@@ -97,6 +84,15 @@ class _DoctorSigninState extends State<DoctorSignin> {
     size = MediaQuery.of(context).size;
     height = size.height;
     width = size.width;
+    // Helping().checkForAuth().then((value) {
+    //   if (value) {
+    //     Navigator.push(context, MaterialPageRoute(
+    //       builder: (context) {
+    //         return DoctorDashboard("0");
+    //       },
+    //     ));
+    //   }
+    // });
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vetner360/globalclass/doctor_color.dart';
-import 'package:vetner360/globalclass/doctor_fontstyle.dart';
+import 'package:vetner360/globalclass/color.dart';
+import 'package:vetner360/globalclass/fontstyle.dart';
 
 class DoctorMythemes {
   static final lightTheme = ThemeData(

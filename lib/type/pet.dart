@@ -1,0 +1,28 @@
+class Pet {
+  late String _id;
+  late String name;
+  late String type;
+  late String imagePath;
+  late String breed;
+  late String note;
+  late String age;
+  late String dietPlan;
+  late String vaccinated;
+  late String userId;
+  late String token;
+  late String createdAt;
+
+  Pet(
+      this._id,
+      this.name,
+      this.note,
+      this.type,
+      this.imagePath,
+      this.breed,
+      this.age,
+      this.dietPlan,
+      this.vaccinated,
+      this.userId,
+      this.token,
+      this.createdAt);
+}

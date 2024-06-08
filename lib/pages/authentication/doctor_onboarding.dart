@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:vetner360/globalclass/doctor_color.dart';
-import 'package:vetner360/globalclass/doctor_fontstyle.dart';
-import 'package:vetner360/globalclass/doctor_icons.dart';
+import 'package:vetner360/globalclass/color.dart';
+import 'package:vetner360/globalclass/fontstyle.dart';
+import 'package:vetner360/globalclass/icons.dart';
 import 'package:vetner360/pages/authentication/doctor_signin.dart';
-import 'package:vetner360/theme/doctor_themecontroller.dart';
+import 'package:vetner360/theme/themecontroller.dart';
 
 class DoctorOnboarding extends StatefulWidget {
   const DoctorOnboarding({Key? key}) : super(key: key);
@@ -18,9 +18,7 @@ class _DoctorOnboardingState extends State<DoctorOnboarding> {
   dynamic size;
   double height = 0.00;
   double width = 0.00;
-
   final themedata = Get.put(DoctorThemecontroler());
-
   var pageController = PageController();
   List<Widget> pages = [];
   var selectedIndex = 0;
@@ -213,11 +211,11 @@ class _DoctorOnboardingState extends State<DoctorOnboarding> {
               splashColor: DoctorColor.transparent,
               highlightColor: DoctorColor.transparent,
               onTap: () {
-                /* Navigator.push(context, MaterialPageRoute(
+                Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
-                    return const KidsSignin();
+                    return const DoctorSignin();
                   },
-                ));*/
+                ));
               },
               child: Center(
                 child: Text("Skip".tr,

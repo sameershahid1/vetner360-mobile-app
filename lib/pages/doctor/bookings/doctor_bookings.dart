@@ -163,11 +163,11 @@ class _DoctorBookingsState extends State<DoctorBookings> {
                                             SizedBox(
                                               height: height / 96,
                                             ),
-                                            // Text(
-                                            //   "Cardiologist".tr,
-                                            //   style: isemibold.copyWith(
-                                            //       fontSize: 14),
-                                            // ),
+                                            Text(
+                                              "Cardiologist".tr,
+                                              style: isemibold.copyWith(
+                                                  fontSize: 14),
+                                            ),
                                             SizedBox(
                                               height: height / 96,
                                             ),
@@ -343,11 +343,11 @@ class _DoctorBookingsState extends State<DoctorBookings> {
                                             SizedBox(
                                               height: height / 96,
                                             ),
-                                            // Text(
-                                            //   "Cardiologist".tr,
-                                            //   style: isemibold.copyWith(
-                                            //       fontSize: 14),
-                                            // ),
+                                            Text(
+                                              "Cardiologist".tr,
+                                              style: isemibold.copyWith(
+                                                  fontSize: 14),
+                                            ),
                                             SizedBox(
                                               height: height / 96,
                                             ),
@@ -523,11 +523,11 @@ class _DoctorBookingsState extends State<DoctorBookings> {
                                             SizedBox(
                                               height: height / 96,
                                             ),
-                                            // Text(
-                                            //   "Cardiologist".tr,
-                                            //   style: isemibold.copyWith(
-                                            //       fontSize: 14),
-                                            // ),
+                                            Text(
+                                              "Cardiologist".tr,
+                                              style: isemibold.copyWith(
+                                                  fontSize: 14),
+                                            ),
                                             SizedBox(
                                               height: height / 96,
                                             ),

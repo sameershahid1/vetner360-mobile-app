@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
-import 'package:vetner360/globalclass/doctor_color.dart';
-import 'package:vetner360/globalclass/doctor_fontstyle.dart';
-import 'package:vetner360/globalclass/doctor_icons.dart';
+import 'package:vetner360/globalclass/color.dart';
+import 'package:vetner360/globalclass/fontstyle.dart';
+import 'package:vetner360/globalclass/icons.dart';
 import 'package:vetner360/pages/authentication/doctor_signin.dart';
-import 'package:vetner360/theme/doctor_themecontroller.dart';
+import 'package:vetner360/theme/themecontroller.dart';
 import 'package:http/http.dart' as http;
 
 class PetOwnerRegistration extends StatefulWidget {
@@ -68,10 +68,10 @@ class _PetOwnerRegistrationState extends State<PetOwnerRegistration> {
           "phoneNo": _phoneNoController.text,
           "password": _passwordController.text,
         };
+        // final url =
+        //     Uri.parse("http://192.168.0.14:8080/mobile/api/user-registration");
         final url =
             Uri.parse("http://192.168.0.14:8080/mobile/api/user-registration");
-        // final url =
-        //     Uri.parse("http://10.8.151.203:8080/mobile/api/user-registration");
 
         final response = await http.post(url,
             headers: {'Content-Type': 'application/json'},
@@ -101,230 +101,385 @@ class _PetOwnerRegistrationState extends State<PetOwnerRegistration> {
     height = size.height;
     width = size.width;
 
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          TextFormField(
-              controller: _firstNameController,
-              validator: ValidationBuilder().minLength(3).maxLength(25).build(),
-              scrollPadding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              style:
-                  iregular.copyWith(fontSize: 14, color: DoctorColor.textgrey),
-              decoration: InputDecoration(
-                hintText: 'First Name'.tr,
-                fillColor: themedata.isdark
-                    ? DoctorColor.lightblack
-                    : DoctorColor.bgcolor,
-                filled: true,
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Image.asset(
-                    DoctorPngimage.user,
+    return SingleChildScrollView(
+      child: Padding(
+        padding:
+            EdgeInsets.symmetric(horizontal: width / 36, vertical: height / 36),
+        child: Column(
+          children: [
+            SizedBox(
+              height: height / 24,
+            ),
+            SizedBox(
+              height: height / 36,
+            ),
+            Text(
+              "Create_Account".tr,
+              style: isemibold.copyWith(fontSize: 20),
+            ),
+            SizedBox(
+              height: height / 96,
+            ),
+            Text(
+              "We_are_here_to_help_you".tr,
+              style: iregular.copyWith(fontSize: 14),
+            ),
+            SizedBox(
+              height: height / 26,
+            ),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                      controller: _firstNameController,
+                      validator: ValidationBuilder()
+                          .minLength(3)
+                          .maxLength(25)
+                          .build(),
+                      scrollPadding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      style: iregular.copyWith(
+                          fontSize: 14, color: DoctorColor.textgrey),
+                      decoration: InputDecoration(
+                        hintText: 'First Name'.tr,
+                        fillColor: themedata.isdark
+                            ? DoctorColor.lightblack
+                            : DoctorColor.bgcolor,
+                        filled: true,
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Image.asset(
+                            DoctorPngimage.user,
+                            height: height / 36,
+                          ),
+                        ),
+                        hintStyle: iregular.copyWith(
+                            fontSize: 14, color: DoctorColor.textgrey),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                const BorderSide(color: DoctorColor.border)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                const BorderSide(color: DoctorColor.border)),
+                      )),
+                  SizedBox(
+                    height: height / 26,
+                  ),
+                  TextFormField(
+                      controller: _lastNameController,
+                      validator: ValidationBuilder()
+                          .minLength(3)
+                          .maxLength(25)
+                          .build(),
+                      scrollPadding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      style: iregular.copyWith(
+                          fontSize: 14, color: DoctorColor.textgrey),
+                      decoration: InputDecoration(
+                        hintText: 'Last Name'.tr,
+                        fillColor: themedata.isdark
+                            ? DoctorColor.lightblack
+                            : DoctorColor.bgcolor,
+                        filled: true,
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Image.asset(
+                            DoctorPngimage.user,
+                            height: height / 36,
+                          ),
+                        ),
+                        hintStyle: iregular.copyWith(
+                            fontSize: 14, color: DoctorColor.textgrey),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                const BorderSide(color: DoctorColor.border)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                const BorderSide(color: DoctorColor.border)),
+                      )),
+                  SizedBox(
                     height: height / 36,
                   ),
-                ),
-                hintStyle: iregular.copyWith(
-                    fontSize: 14, color: DoctorColor.textgrey),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: DoctorColor.border)),
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: DoctorColor.border)),
-              )),
-          SizedBox(
-            height: height / 26,
-          ),
-          TextFormField(
-              controller: _lastNameController,
-              validator: ValidationBuilder().minLength(3).maxLength(25).build(),
-              scrollPadding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              style:
-                  iregular.copyWith(fontSize: 14, color: DoctorColor.textgrey),
-              decoration: InputDecoration(
-                hintText: 'Last Name'.tr,
-                fillColor: themedata.isdark
-                    ? DoctorColor.lightblack
-                    : DoctorColor.bgcolor,
-                filled: true,
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Image.asset(
-                    DoctorPngimage.user,
+                  TextFormField(
+                      controller: _emailController,
+                      validator: ValidationBuilder()
+                          .email()
+                          .minLength(3)
+                          .maxLength(25)
+                          .build(),
+                      scrollPadding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      style: iregular.copyWith(
+                          fontSize: 14, color: DoctorColor.textgrey),
+                      decoration: InputDecoration(
+                        hintText: 'Your_Email'.tr,
+                        fillColor: themedata.isdark
+                            ? DoctorColor.lightblack
+                            : DoctorColor.bgcolor,
+                        filled: true,
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Image.asset(
+                            DoctorPngimage.email,
+                            height: height / 36,
+                          ),
+                        ),
+                        hintStyle: iregular.copyWith(
+                            fontSize: 14, color: DoctorColor.textgrey),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                const BorderSide(color: DoctorColor.border)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                const BorderSide(color: DoctorColor.border)),
+                      )),
+                  SizedBox(
                     height: height / 36,
                   ),
-                ),
-                hintStyle: iregular.copyWith(
-                    fontSize: 14, color: DoctorColor.textgrey),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: DoctorColor.border)),
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: DoctorColor.border)),
-              )),
-          SizedBox(
-            height: height / 36,
-          ),
-          TextFormField(
-              controller: _emailController,
-              validator: ValidationBuilder()
-                  .email()
-                  .minLength(3)
-                  .maxLength(25)
-                  .build(),
-              scrollPadding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              style:
-                  iregular.copyWith(fontSize: 14, color: DoctorColor.textgrey),
-              decoration: InputDecoration(
-                hintText: 'Your_Email'.tr,
-                fillColor: themedata.isdark
-                    ? DoctorColor.lightblack
-                    : DoctorColor.bgcolor,
-                filled: true,
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Image.asset(
-                    DoctorPngimage.email,
-                    height: height / 36,
+                  TextFormField(
+                      controller: _phoneNoController,
+                      validator: ValidationBuilder()
+                          .phone()
+                          .minLength(3)
+                          .maxLength(25)
+                          .build(),
+                      scrollPadding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      style: iregular.copyWith(
+                          fontSize: 14, color: DoctorColor.textgrey),
+                      decoration: InputDecoration(
+                        hintText: 'Phone No'.tr,
+                        fillColor: themedata.isdark
+                            ? DoctorColor.lightblack
+                            : DoctorColor.bgcolor,
+                        filled: true,
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Image.asset(
+                            DoctorPngimage.user,
+                            height: height / 36,
+                          ),
+                        ),
+                        hintStyle: iregular.copyWith(
+                            fontSize: 14, color: DoctorColor.textgrey),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                const BorderSide(color: DoctorColor.border)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                const BorderSide(color: DoctorColor.border)),
+                      )),
+                  SizedBox(
+                    height: height / 26,
                   ),
-                ),
-                hintStyle: iregular.copyWith(
-                    fontSize: 14, color: DoctorColor.textgrey),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: DoctorColor.border)),
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: DoctorColor.border)),
-              )),
-          SizedBox(
-            height: height / 36,
-          ),
-          TextFormField(
-              controller: _phoneNoController,
-              validator: ValidationBuilder()
-                  .phone()
-                  .minLength(3)
-                  .maxLength(25)
-                  .build(),
-              scrollPadding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              style:
-                  iregular.copyWith(fontSize: 14, color: DoctorColor.textgrey),
-              decoration: InputDecoration(
-                hintText: 'Phone No'.tr,
-                fillColor: themedata.isdark
-                    ? DoctorColor.lightblack
-                    : DoctorColor.bgcolor,
-                filled: true,
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Image.asset(
-                    DoctorPngimage.user,
-                    height: height / 36,
+                  TextFormField(
+                      controller: _passwordController,
+                      validator: ValidationBuilder()
+                          .minLength(6)
+                          .maxLength(25)
+                          .build(),
+                      scrollPadding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      style: iregular.copyWith(
+                          fontSize: 14, color: DoctorColor.textgrey),
+                      decoration: InputDecoration(
+                        hintText: 'Password'.tr,
+                        fillColor: themedata.isdark
+                            ? DoctorColor.lightblack
+                            : DoctorColor.bgcolor,
+                        filled: true,
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Image.asset(
+                            DoctorPngimage.lock,
+                            height: height / 36,
+                          ),
+                        ),
+                        hintStyle: iregular.copyWith(
+                            fontSize: 14, color: DoctorColor.textgrey),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                const BorderSide(color: DoctorColor.border)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                const BorderSide(color: DoctorColor.border)),
+                      )),
+                  SizedBox(
+                    height: height / 26,
                   ),
-                ),
-                hintStyle: iregular.copyWith(
-                    fontSize: 14, color: DoctorColor.textgrey),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: DoctorColor.border)),
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: DoctorColor.border)),
-              )),
-          SizedBox(
-            height: height / 26,
-          ),
-          TextFormField(
-              controller: _passwordController,
-              validator: ValidationBuilder().minLength(6).maxLength(25).build(),
-              scrollPadding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              style:
-                  iregular.copyWith(fontSize: 14, color: DoctorColor.textgrey),
-              decoration: InputDecoration(
-                hintText: 'Password'.tr,
-                fillColor: themedata.isdark
-                    ? DoctorColor.lightblack
-                    : DoctorColor.bgcolor,
-                filled: true,
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Image.asset(
-                    DoctorPngimage.lock,
-                    height: height / 36,
+                  TextFormField(
+                      controller: _conformPasswordController,
+                      validator: validatePasswordMatch,
+                      scrollPadding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      style: iregular.copyWith(
+                          fontSize: 14, color: DoctorColor.textgrey),
+                      decoration: InputDecoration(
+                        hintText: 'Conform Password'.tr,
+                        fillColor: themedata.isdark
+                            ? DoctorColor.lightblack
+                            : DoctorColor.bgcolor,
+                        filled: true,
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Image.asset(
+                            DoctorPngimage.lock,
+                            height: height / 36,
+                          ),
+                        ),
+                        hintStyle: iregular.copyWith(
+                            fontSize: 14, color: DoctorColor.textgrey),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                const BorderSide(color: DoctorColor.border)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                const BorderSide(color: DoctorColor.border)),
+                      )),
+                  SizedBox(
+                    height: height / 26,
                   ),
-                ),
-                hintStyle: iregular.copyWith(
-                    fontSize: 14, color: DoctorColor.textgrey),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: DoctorColor.border)),
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: DoctorColor.border)),
-              )),
-          SizedBox(
-            height: height / 26,
-          ),
-          TextFormField(
-              controller: _conformPasswordController,
-              validator: validatePasswordMatch,
-              scrollPadding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              style:
-                  iregular.copyWith(fontSize: 14, color: DoctorColor.textgrey),
-              decoration: InputDecoration(
-                hintText: 'Conform Password'.tr,
-                fillColor: themedata.isdark
-                    ? DoctorColor.lightblack
-                    : DoctorColor.bgcolor,
-                filled: true,
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Image.asset(
-                    DoctorPngimage.lock,
-                    height: height / 36,
+                  InkWell(
+                    splashColor: DoctorColor.transparent,
+                    highlightColor: DoctorColor.transparent,
+                    onTapDown: registerAccount,
+                    child: Container(
+                      height: height / 15,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: DoctorColor.primary),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: width / 22),
+                        child: Center(
+                          child: Text("Create_Account".tr,
+                              style: imedium.copyWith(
+                                  fontSize: 16, color: DoctorColor.white)),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-                hintStyle: iregular.copyWith(
-                    fontSize: 14, color: DoctorColor.textgrey),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: DoctorColor.border)),
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: DoctorColor.border)),
-              )),
-          SizedBox(
-            height: height / 26,
-          ),
-          InkWell(
-            splashColor: DoctorColor.transparent,
-            highlightColor: DoctorColor.transparent,
-            onTapDown: registerAccount,
-            child: Container(
-              height: height / 15,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: DoctorColor.primary),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: width / 22),
-                child: Center(
-                  child: Text("Create_Account".tr,
-                      style: imedium.copyWith(
-                          fontSize: 16, color: DoctorColor.white)),
-                ),
+                ],
               ),
             ),
-          ),
-        ],
+            SizedBox(
+              height: height / 26,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                    height: height / 500,
+                    width: width / 2.85,
+                    color: DoctorColor.border),
+                Text(
+                  "or".tr,
+                  style: imedium.copyWith(
+                      fontSize: 16, color: DoctorColor.textgrey),
+                ),
+                Container(
+                    height: height / 500,
+                    width: width / 2.85,
+                    color: DoctorColor.border),
+              ],
+            ),
+            SizedBox(
+              height: height / 36,
+            ),
+            Container(
+              width: width / 1,
+              height: height / 14,
+              decoration: BoxDecoration(
+                  border: Border.all(color: DoctorColor.border),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    DoctorPngimage.google,
+                    height: height / 36,
+                  ),
+                  SizedBox(
+                    width: width / 26,
+                  ),
+                  Text(
+                    "Continue_with_Google".tr,
+                    style: imedium.copyWith(fontSize: 14),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: height / 56,
+            ),
+            Container(
+              width: width / 1,
+              height: height / 14,
+              decoration: BoxDecoration(
+                  border: Border.all(color: DoctorColor.border),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    DoctorPngimage.facebook,
+                    height: height / 30,
+                  ),
+                  SizedBox(
+                    width: width / 26,
+                  ),
+                  Text(
+                    "Continue_with_Facebook".tr,
+                    style: imedium.copyWith(fontSize: 14),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: height / 36,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Do_you_have_anaccount".tr,
+                  style: iregular.copyWith(fontSize: 14),
+                ),
+                SizedBox(
+                  width: width / 96,
+                ),
+                InkWell(
+                    splashColor: DoctorColor.transparent,
+                    highlightColor: DoctorColor.transparent,
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return const DoctorSignin();
+                        },
+                      ));
+                    },
+                    child: Text(
+                      "Sign_In".tr,
+                      style: imedium.copyWith(fontSize: 14, color: Colors.blue),
+                    )),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

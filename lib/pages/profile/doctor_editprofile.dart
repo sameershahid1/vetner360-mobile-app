@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vetner360/globalclass/doctor_icons.dart';
-import 'package:vetner360/theme/doctor_themecontroller.dart';
+import 'package:vetner360/globalclass/icons.dart';
+import 'package:vetner360/theme/themecontroller.dart';
 
-import '../../globalclass/doctor_color.dart';
-import '../../globalclass/doctor_fontstyle.dart';
+import '../../globalclass/color.dart';
+import '../../globalclass/fontstyle.dart';
 
 class DoctorEditprofile extends StatefulWidget {
   const DoctorEditprofile({Key? key}) : super(key: key);

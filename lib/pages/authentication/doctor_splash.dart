@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vetner360/globalclass/doctor_icons.dart';
+import 'package:vetner360/globalclass/icons.dart';
 import 'package:vetner360/pages/authentication/doctor_onboarding.dart';
 
 class DoctorSplash extends StatefulWidget {

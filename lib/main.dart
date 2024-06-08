@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:vetner360/pages/authentication/doctor_splash.dart';
-import 'package:vetner360/theme/doctor_theme.dart';
-import 'package:vetner360/theme/doctor_themecontroller.dart';
-import 'package:vetner360/doctor_translation/stringtranslation.dart';
+import 'package:vetner360/theme/theme.dart';
+import 'package:vetner360/theme/themecontroller.dart';
+import 'package:vetner360/translation/stringtranslation.dart';
+import 'package:intl/intl_standalone.dart'
+    if (dart.library.html) 'package:intl/intl_browser.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await findSystemLocale();
 
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);

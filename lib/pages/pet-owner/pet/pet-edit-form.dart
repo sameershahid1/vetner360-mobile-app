@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:camera/camera.dart';
+
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
@@ -13,15 +13,15 @@ import 'package:http/http.dart' as http;
 
 List<String> dropdownItems = ['Male', 'Female'];
 
-class PetRegistrationForm extends StatefulWidget {
-  final XFile image;
-  const PetRegistrationForm({super.key, required this.image});
+class PetEditForm extends StatefulWidget {
+  final petItem;
+  const PetEditForm({super.key, required this.petItem});
 
   @override
-  State<PetRegistrationForm> createState() => _PetRegistrationFormState();
+  State<PetEditForm> createState() => _PetEditFormState();
 }
 
-class _PetRegistrationFormState extends State<PetRegistrationForm> {
+class _PetEditFormState extends State<PetEditForm> {
   dynamic size;
   double height = 0.00;
   double width = 0.00;
@@ -32,20 +32,29 @@ class _PetRegistrationFormState extends State<PetRegistrationForm> {
   final _ageController = TextEditingController();
   final _weightController = TextEditingController();
   final _dietPlanController = TextEditingController();
+  final themedata = Get.put(DoctorThemecontroler());
+  bool? _vaccinated = false;
   String? _selectGender = dropdownItems.first;
   DateTime? selectedDate;
-  bool? _vaccinated;
-  final themedata = Get.put(DoctorThemecontroler());
 
   @override
   void initState() {
-    this._vaccinated = false;
+    this._nameController.text = widget.petItem['name'];
+    this._noteController.text = widget.petItem['note'];
+    this._ageController.text = widget.petItem['age'];
+    this._weightController.text = widget.petItem['weight'];
+    this._dietPlanController.text = widget.petItem['dietPlan'];
+    this._vaccinated = widget.petItem['vaccinated'];
+    this._nickNameController.text = widget.petItem['nickName'];
+    _selectGender = widget.petItem['gender'];
+    selectedDate = DateTime.parse(widget.petItem['birthDate']);
     super.initState();
   }
 
   @override
   void dispose() {
     _nameController.dispose();
+    _noteController.dispose();
     _noteController.dispose();
     _ageController.dispose();
     _weightController.dispose();
@@ -63,7 +72,7 @@ class _PetRegistrationFormState extends State<PetRegistrationForm> {
     );
   }
 
-  Future<void> registerPet(TapDownDetails details) async {
+  Future<void> editPet(TapDownDetails details) async {
     if (_formKey.currentState!.validate()) {
       try {
         final userId = await Helping().getToken("id");
@@ -72,14 +81,12 @@ class _PetRegistrationFormState extends State<PetRegistrationForm> {
           'Authorization': 'Bearer $token',
           'Content-Type': 'application/json',
         };
-        final imageBase64 = await Helping().getBase64Image(widget.image);
 
         final formData = {
           "name": _nameController.text,
           "nickName": _nickNameController.text,
           "gender": _selectGender,
           "birthDate": selectedDate!.toIso8601String(),
-          "image": imageBase64,
           "note": _noteController.text,
           "age": _ageController.text,
           "weight": _weightController.text,
@@ -87,12 +94,13 @@ class _PetRegistrationFormState extends State<PetRegistrationForm> {
           "vaccinated": _vaccinated,
           "userId": userId,
         };
-        final url = Uri.parse("http://192.168.0.14:8080/mobile/api/pet/");
+        final url = Uri.parse(
+            "http://192.168.0.14:8080/mobile/api/pet/${widget.petItem['token']}");
         // final url =
         //     Uri.parse("http://10.8.151.203:8080/mobile/api/user-registration");
 
         final response =
-            await http.post(url, headers: headers, body: jsonEncode(formData));
+            await http.patch(url, headers: headers, body: jsonEncode(formData));
         final data = jsonDecode(response.body);
 
         if (response.statusCode != 200) {
@@ -101,8 +109,7 @@ class _PetRegistrationFormState extends State<PetRegistrationForm> {
             backgroundColor: DoctorColor.red,
           ));
         } else {
-          Navigator.of(context).popUntil(
-              (route) => route.isFirst); // Pop all routes until the first one
+          Navigator.of(context).popUntil((route) => route.isFirst);
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -143,7 +150,7 @@ class _PetRegistrationFormState extends State<PetRegistrationForm> {
         appBar: AppBar(
           surfaceTintColor: DoctorColor.white,
           title: Text(
-            "Register pet".tr,
+            "Edit pet profile".tr,
             style: isemibold.copyWith(
                 fontSize: 20,
                 color:
@@ -433,7 +440,7 @@ class _PetRegistrationFormState extends State<PetRegistrationForm> {
                 InkWell(
                   splashColor: DoctorColor.transparent,
                   highlightColor: DoctorColor.transparent,
-                  onTapDown: registerPet,
+                  onTapDown: editPet,
                   child: Container(
                     height: height / 15,
                     decoration: BoxDecoration(
@@ -442,7 +449,7 @@ class _PetRegistrationFormState extends State<PetRegistrationForm> {
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: width / 22),
                       child: Center(
-                        child: Text("Register".tr,
+                        child: Text("Save".tr,
                             style: imedium.copyWith(
                                 fontSize: 16, color: DoctorColor.white)),
                       ),

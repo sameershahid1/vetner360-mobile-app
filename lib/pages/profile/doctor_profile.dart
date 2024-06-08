@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vetner360/globalclass/doctor_color.dart';
-import 'package:vetner360/globalclass/doctor_fontstyle.dart';
-import 'package:vetner360/globalclass/doctor_icons.dart';
+import 'package:vetner360/globalclass/color.dart';
+import 'package:vetner360/globalclass/fontstyle.dart';
+import 'package:vetner360/globalclass/icons.dart';
 import 'package:vetner360/helping/help.dart';
 import 'package:vetner360/pages/authentication/doctor_onboarding.dart';
 import 'package:vetner360/pages/authentication/doctor_signin.dart';
@@ -10,7 +10,7 @@ import 'package:vetner360/pages/profile/doctor_cms.dart';
 import 'package:vetner360/pages/profile/doctor_editprofile.dart';
 import 'package:vetner360/pages/profile/doctor_favorites.dart';
 import 'package:vetner360/pages/profile/doctor_notification.dart';
-import 'package:vetner360/theme/doctor_themecontroller.dart';
+import 'package:vetner360/theme/themecontroller.dart';
 
 class DoctorProfile extends StatefulWidget {
   const DoctorProfile({Key? key}) : super(key: key);
@@ -651,6 +651,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                           highlightColor: DoctorColor.transparent,
                           onTapDown: (TapDownDetails details) async {
                             await Helping().saveToken("token", "");
+                            await Helping().saveToken("id", "");
                             Get.to(() => const DoctorSignin());
                           },
                           child: Container(
