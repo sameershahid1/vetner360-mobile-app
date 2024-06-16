@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:vetner360/pages/authentication/doctor_splash.dart';
+import 'package:vetner360/screen/authentication/splash.dart';
 import 'package:vetner360/theme/theme.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 import 'package:vetner360/translation/stringtranslation.dart';

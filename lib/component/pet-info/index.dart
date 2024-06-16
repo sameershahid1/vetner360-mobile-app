@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
-import 'package:vetner360/pages/pet-owner/pet/pet-edit-form.dart';
+import 'package:vetner360/screen/pet-owner/activity/activity-list.dart';
+import 'package:vetner360/screen/pet-owner/pet/pet-edit-form.dart';
 
 class PetInfo extends StatefulWidget {
   final petItem;
@@ -15,7 +17,7 @@ class PetInfo extends StatefulWidget {
 class _PetInfoState extends State<PetInfo> {
   String formatedDateOfBirth = "";
 
-  handleEditScreen() {
+  handleEditScreen(TapDownDetails details) {
     Navigator.push(context, MaterialPageRoute(
       builder: (context) {
         return PetEditForm(
@@ -25,7 +27,7 @@ class _PetInfoState extends State<PetInfo> {
     ));
   }
 
-  Future<String> testing() async {
+  Future<String> formattingDateOfBirth() async {
     await initializeDateFormatting();
     final dt = DateTime.parse(widget.petItem['birthDate']);
     final formatter = DateFormat('MM-dd-yyyy');
@@ -35,7 +37,7 @@ class _PetInfoState extends State<PetInfo> {
 
   @override
   Widget build(BuildContext context) {
-    testing().then((value) {
+    formattingDateOfBirth().then((value) {
       setState(() {
         formatedDateOfBirth = value;
       });
@@ -52,8 +54,8 @@ class _PetInfoState extends State<PetInfo> {
                 style: isemibold.copyWith(
                     fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              TextButton(
-                onPressed: handleEditScreen,
+              InkWell(
+                onTapDown: handleEditScreen,
                 child: Text(
                   "Edit",
                   style: isemibold.copyWith(
@@ -438,116 +440,159 @@ class _PetInfoState extends State<PetInfo> {
           SizedBox(
             height: 15,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    child: Icon(
-                      Icons.local_activity,
-                      color: Colors.purple,
+          InkWell(
+            // style: OutlinedButton.styleFrom(
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(0),
+            //   ),
+            // ),
+            splashColor: const Color.fromARGB(76, 158, 158, 158),
+            highlightColor: const Color.fromARGB(78, 158, 158, 158),
+            onTapDown: (TapDownDetails details) {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return ActivityList(petId: widget.petItem['token']);
+                },
+              ));
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      child: Icon(
+                        Icons.local_activity,
+                        color: Colors.purple,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(6.0), // Set border radius
+                        color: Color.fromARGB(117, 181, 13, 223),
+                      ),
+                      padding: EdgeInsets.all(8),
                     ),
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(6.0), // Set border radius
-                      color: Color.fromARGB(117, 181, 13, 223),
+                    SizedBox(
+                      width: 10,
                     ),
-                    padding: EdgeInsets.all(8),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "Activity",
-                    style: isemibold.copyWith(fontSize: 20),
-                  ),
-                ],
-              ),
-              Container(
-                child: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.grey,
+                    Text(
+                      "Activity",
+                      style: isemibold.copyWith(fontSize: 20),
+                    ),
+                  ],
                 ),
-              ),
-            ],
+                Container(
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            ),
           ),
           SizedBox(
             height: 20,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
+          InkWell(
+              // style: OutlinedButton.styleFrom(
+              //   shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.circular(0),
+              //   ),
+              // ),
+              splashColor: const Color.fromARGB(76, 158, 158, 158),
+              highlightColor: const Color.fromARGB(78, 158, 158, 158),
+              onTapDown: (TapDownDetails details) {
+                print("DF");
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Row(
+                    children: [
+                      Container(
+                        child: Icon(
+                          Icons.report,
+                          color: Colors.green,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6.0),
+                          color: Color.fromARGB(117, 13, 223, 41),
+                        ),
+                        padding: EdgeInsets.all(8),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Doctor Report",
+                        style: isemibold.copyWith(fontSize: 20),
+                      ),
+                    ],
+                  ),
                   Container(
                     child: Icon(
-                      Icons.report,
-                      color: Colors.green,
+                      Icons.arrow_forward_ios,
+                      color: Colors.grey,
                     ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6.0),
-                      color: Color.fromARGB(117, 13, 223, 41),
-                    ),
-                    padding: EdgeInsets.all(8),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "Doctor Report",
-                    style: isemibold.copyWith(fontSize: 20),
                   ),
                 ],
-              ),
-              Container(
-                child: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.grey,
-                ),
-              ),
-            ],
-          ),
+              )),
           SizedBox(
             height: 20,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    child: Icon(
-                      Icons.note,
-                      color: Colors.blueAccent,
+          InkWell(
+            // style: OutlinedButton.styleFrom(
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(0),
+            //   ),
+            // ),
+            splashColor: const Color.fromARGB(76, 158, 158, 158),
+            highlightColor: const Color.fromARGB(78, 158, 158, 158),
+            onTapDown: (TapDownDetails details) {
+              // Navigator.push(context, MaterialPageRoute(
+              //   builder: (context) {
+              //     return TakePictureScreen(camera: firstCamera);
+              //   },
+              // ));
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      child: Icon(
+                        Icons.note,
+                        color: Colors.blueAccent,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(6.0), // Set border radius
+                        color: Color.fromARGB(117, 14, 133, 231),
+                      ),
+                      padding: EdgeInsets.all(8),
                     ),
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(6.0), // Set border radius
-                      color: Color.fromARGB(117, 14, 133, 231),
+                    SizedBox(
+                      width: 10,
                     ),
-                    padding: EdgeInsets.all(8),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "Prescription",
-                    style: isemibold.copyWith(fontSize: 20),
-                  ),
-                ],
-              ),
-              Container(
-                child: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.grey,
+                    Text(
+                      "Prescription",
+                      style: isemibold.copyWith(fontSize: 20),
+                    ),
+                  ],
                 ),
-              ),
-            ],
+                Container(
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            ),
           ),
           SizedBox(
             height: 20,
-          ),
+          )
         ],
       ),
     );

@@ -39,4 +39,40 @@ class Request {
     final data = jsonDecode(response.body);
     return data;
   }
+
+  Future<List> getMyPetActivity(int page, int limit, String petId) async {
+    try {
+      final formData = {
+        "page": page + 1,
+        "limit": limit,
+      };
+      final token = await Helping().getToken("token");
+      Map<String, String> headers = {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      };
+      final url = Uri.parse(
+          "http://192.168.0.14:8080/mobile/api/pet/activity/list/${petId}");
+      final response =
+          await http.post(url, headers: headers, body: jsonEncode(formData));
+      final data = jsonDecode(response.body);
+      return data['records'];
+    } catch (e) {
+      print('Error: $e');
+      return [];
+    }
+  }
+
+  Future<dynamic> deletePetActivity(String id, String petId) async {
+    final token = await Helping().getToken("token");
+    Map<String, String> headers = {
+      'Authorization': 'Bearer $token',
+      'Content-Type': 'application/json',
+    };
+    final url =
+        Uri.parse("http://192.168.0.14:8080/mobile/api/pet/${petId}/${id}");
+    final response = await http.delete(url, headers: headers);
+    final data = jsonDecode(response.body);
+    return data;
+  }
 }

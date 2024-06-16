@@ -3,8 +3,8 @@ import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/helping/help.dart';
 import 'package:vetner360/helping/request.dart';
-import 'package:vetner360/pages/pet-owner/pet/my-pet-detail.dart';
-import 'package:vetner360/pages/pet-owner/pet/pet-edit-form.dart';
+import 'package:vetner360/screen/pet-owner/pet/my-pet-detail.dart';
+import 'package:vetner360/screen/pet-owner/pet/pet-edit-form.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +12,8 @@ enum MenuItem { Edit, Delete }
 
 class PetListItem extends StatefulWidget {
   final petItem;
-  PetListItem(this.petItem);
+  final Function? selectPet;
+  PetListItem({super.key, this.petItem, this.selectPet});
 
   @override
   State<PetListItem> createState() => _PetListItemState();
@@ -49,7 +50,9 @@ class _PetListItemState extends State<PetListItem> {
     return InkWell(
       splashColor: DoctorColor.transparent,
       highlightColor: DoctorColor.transparent,
-      onTap: openPetDetail,
+      onTap: widget.selectPet == null
+          ? openPetDetail
+          : () => widget.selectPet!(widget.petItem['token']),
       child: Container(
         decoration: BoxDecoration(
           color: themedata.isdark ? DoctorColor.lightblack : DoctorColor.white,
@@ -131,35 +134,39 @@ class _PetListItemState extends State<PetListItem> {
                             ),
                           ],
                         ),
-                        PopupMenuButton<MenuItem>(
-                          initialValue: selectedItem,
-                          onSelected: (MenuItem item) {
-                            if (item == MenuItem.Delete) {
-                              deletePet();
-                            } else if (item == MenuItem.Edit) {
-                              Navigator.push(context, MaterialPageRoute(
-                                builder: (context) {
-                                  return PetEditForm(
-                                    petItem: widget.petItem,
-                                  );
-                                },
-                              ));
-                            }
-                            setState(() {
-                              selectedItem = item;
-                            });
-                          },
-                          itemBuilder: (BuildContext context) =>
-                              <PopupMenuEntry<MenuItem>>[
-                            const PopupMenuItem<MenuItem>(
-                              value: MenuItem.Edit,
-                              child: Text('Edit'),
-                            ),
-                            const PopupMenuItem<MenuItem>(
-                              value: MenuItem.Delete,
-                              child: Text('Delete'),
-                            ),
-                          ],
+                        Container(
+                          child: widget.selectPet == null
+                              ? PopupMenuButton<MenuItem>(
+                                  initialValue: selectedItem,
+                                  onSelected: (MenuItem item) {
+                                    if (item == MenuItem.Delete) {
+                                      deletePet();
+                                    } else if (item == MenuItem.Edit) {
+                                      Navigator.push(context, MaterialPageRoute(
+                                        builder: (context) {
+                                          return PetEditForm(
+                                            petItem: widget.petItem,
+                                          );
+                                        },
+                                      ));
+                                    }
+                                    setState(() {
+                                      selectedItem = item;
+                                    });
+                                  },
+                                  itemBuilder: (BuildContext context) =>
+                                      <PopupMenuEntry<MenuItem>>[
+                                    const PopupMenuItem<MenuItem>(
+                                      value: MenuItem.Edit,
+                                      child: Text('Edit'),
+                                    ),
+                                    const PopupMenuItem<MenuItem>(
+                                      value: MenuItem.Delete,
+                                      child: Text('Delete'),
+                                    ),
+                                  ],
+                                )
+                              : null,
                         ),
                       ]),
                 ],

@@ -1,7 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.doctorappointment">
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />  ```
+
     <application
-        android:label="Doctor Appointment"
+        android:label="Vetner360"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -30,5 +32,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyDbraxaWVK1WZ_gQu5ueMkW1bwrn2csAUs"/>
     </application>
 </manifest>
