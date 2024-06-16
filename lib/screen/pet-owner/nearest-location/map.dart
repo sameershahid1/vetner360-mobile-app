@@ -9,7 +9,7 @@ class DoctorNearestLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DoctorLocationController>(
-      init: DoctorLocationController("doc-location-list"),
+      init: DoctorLocationController("doc-location-list", context),
       builder: (_) => Stack(
         children: [
           Obx(

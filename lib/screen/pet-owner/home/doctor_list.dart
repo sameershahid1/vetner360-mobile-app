@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/globalclass/icons.dart';
-import 'package:vetner360/screen/pet-owner/home/details.dart';
+import 'package:vetner360/screen/pet-owner/nearest-location/doctor-detail.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 
 class DoctorList extends StatefulWidget {

@@ -9,7 +9,7 @@ class LocationPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DoctorLocationController>(
-      init: DoctorLocationController("get-location"),
+      init: DoctorLocationController("get-location", context),
       builder: (_) => Stack(
         children: [
           Obx(

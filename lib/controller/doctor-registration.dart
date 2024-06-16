@@ -82,7 +82,7 @@ class DoctorRegistrationController extends GetxController {
           "registration": registrationController.text,
           "clinicName": clinicNameController.text,
           "longitude": this.longitude.value,
-          "latitude": this.longitude.value,
+          "latitude": this.latitude.value,
           "userType": 3,
         };
 

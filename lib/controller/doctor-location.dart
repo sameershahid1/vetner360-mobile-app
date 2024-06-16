@@ -1,10 +1,15 @@
-import 'dart:async';
-
-import 'package:get/get.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
+import 'dart:convert';
+import 'dart:async';
+
+import 'package:vetner360/helping/help.dart';
+import 'package:vetner360/screen/pet-owner/nearest-location/doctor-detail.dart';
 
 class DoctorLocationController extends GetxController {
   final Completer<GoogleMapController> googleController =
@@ -13,15 +18,64 @@ class DoctorLocationController extends GetxController {
   RxDouble latitude = RxDouble(0);
   RxDouble longitude = RxDouble(0);
 
-  DoctorLocationController(String type) {
+  DoctorLocationController(String type, BuildContext context) {
     this.setCurrentLocation(type);
     if (type == "doc-location-list") {
-      setDoctorList();
+      setDoctorList(context);
     }
   }
 
-  Future<void> setDoctorList() async {
-    print("Send Request");
+  Future<void> setDoctorList(BuildContext context) async {
+    try {
+      Position? position = await _getCurrentLocation();
+      if (position != null) {
+        final token = await Helping().getToken("token");
+        Map<String, String> headers = {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json',
+        };
+
+        final url = Uri.parse(
+            "http://192.168.0.14:8080/mobile/api/doctor/nearest?latitude=${position.latitude}&longitude=${position.longitude}");
+        final response = await http.get(url, headers: headers);
+        final data = jsonDecode(response.body);
+        Color bgColor;
+        if (response.statusCode != 200) {
+          bgColor = Colors.red;
+        } else {
+          bgColor = Colors.green;
+          List doctorList = data['records'];
+          doctorList.forEach((data) async {
+            LatLng location = LatLng(data['location']['coordinates'][1],
+                data['location']['coordinates'][0]);
+
+            String address = await Helping().getAddress(location);
+
+            this.markersState.add(Marker(
+                  markerId: MarkerId('doctor-clinic-location-${data['id']}'),
+                  position: location,
+                  infoWindow: InfoWindow(
+                    title: "${data["firstName"]} ${data["lastName"]}",
+                    snippet: address,
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return DoctorDetails();
+                        },
+                      ));
+                    },
+                  ),
+                ));
+          });
+        }
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(data['message']),
+          backgroundColor: bgColor,
+        ));
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
   }
 
   Future<bool> _requestLocationPermission() async {
@@ -58,8 +112,6 @@ class DoctorLocationController extends GetxController {
     if (position != null) {
       this.latitude.value = position.latitude;
       this.longitude.value = position.longitude;
-      List<Placemark> placemarks =
-          await placemarkFromCoordinates(position.latitude, position.longitude);
 
       final GoogleMapController controller = await googleController.future;
       await controller.animateCamera(CameraUpdate.newCameraPosition(
@@ -68,6 +120,8 @@ class DoctorLocationController extends GetxController {
               target: LatLng(position.latitude, position.longitude),
               tilt: 59.440717697143555,
               zoom: 19.151926040649414)));
+      List<Placemark> placemarks =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
 
       if (placemarks.isNotEmpty && type == "get-location") {
         final placemark = placemarks.first;
