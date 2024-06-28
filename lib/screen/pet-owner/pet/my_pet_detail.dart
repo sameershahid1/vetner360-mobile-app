@@ -46,7 +46,7 @@ class _MyPetDetailState extends State<MyPetDetail> {
               child: Column(
                 children: [
                   Image.network(
-                    'http://192.168.0.14:8080/${widget.petItem['imagePath']}',
+                    'http:// 192.168.0.14:8080/${widget.petItem['imagePath']}',
                     height: 250,
                     width: MediaQuery.of(context).size.width,
                     fit: BoxFit.fill,
@@ -68,10 +68,11 @@ class _MyPetDetailState extends State<MyPetDetail> {
               ),
             ),
             Container(
-                padding: EdgeInsets.only(top: 15, left: 30, right: 30),
-                child: PetInfo(
-                  petItem: widget.petItem,
-                )),
+              padding: EdgeInsets.only(top: 15, left: 30, right: 30),
+              child: PetInfo(
+                petItem: widget.petItem,
+              ),
+            ),
           ],
         ),
       ),

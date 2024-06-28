@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:vetner360/component/bottom-modal/index.dart';
-import 'package:vetner360/component/pet-list-item/index.dart';
-import 'package:vetner360/globalclass/color.dart';
-import 'package:vetner360/globalclass/fontstyle.dart';
-import 'package:vetner360/helping/request.dart';
-import 'package:vetner360/screen/pet-owner/activity/activity-list.dart';
 import 'package:vetner360/screen/pet-owner/activity/activity-register-form.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:vetner360/component/pet-list-item/index.dart';
+import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/theme/themecontroller.dart';
+import 'package:vetner360/globalclass/color.dart';
+import 'package:vetner360/helping/request.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SelectActivityPet extends StatefulWidget {
@@ -31,7 +29,7 @@ class _SelectActivityPetState extends State<SelectActivityPet> {
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
       try {
-        Request().getMyPet(pageKey, _limit).then((latestPets) {
+        Request().getMyPet(pageKey, _limit, context).then((latestPets) {
           setState(() {
             final isLastPage = latestPets.length < this._limit;
             if (isLastPage) {

@@ -1,6 +1,9 @@
 class Pet {
-  late String _id;
+  late String id;
   late String name;
+  late String nickName;
+  late String gender;
+  late String birthDate;
   late String type;
   late String imagePath;
   late String breed;
@@ -13,16 +16,20 @@ class Pet {
   late String createdAt;
 
   Pet(
-      this._id,
-      this.name,
-      this.note,
-      this.type,
-      this.imagePath,
-      this.breed,
-      this.age,
-      this.dietPlan,
-      this.vaccinated,
-      this.userId,
-      this.token,
-      this.createdAt);
+    this.id,
+    this.name,
+    this.nickName,
+    this.gender,
+    this.birthDate,
+    this.note,
+    this.type,
+    this.imagePath,
+    this.breed,
+    this.age,
+    this.dietPlan,
+    this.vaccinated,
+    this.userId,
+    this.token,
+    this.createdAt,
+  );
 }

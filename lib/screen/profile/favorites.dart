@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/globalclass/icons.dart';
-import 'package:vetner360/screen/pet-owner/nearest-location/doctor-detail.dart';
+import 'package:vetner360/screen/pet-owner/nearest-location/doctor_detail.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 
 class DoctorFavorites extends StatefulWidget {
@@ -104,11 +104,11 @@ class _DoctorFavoritesState extends State<DoctorFavorites> {
                           splashColor: DoctorColor.transparent,
                           highlightColor: DoctorColor.transparent,
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(
-                              builder: (context) {
-                                return const DoctorDetails();
-                              },
-                            ));
+                            // Navigator.push(context, MaterialPageRoute(
+                            //   builder: (context) {
+                            //     return const DoctorDetails();
+                            //   },
+                            // ));
                           },
                           child: Container(
                             decoration: BoxDecoration(

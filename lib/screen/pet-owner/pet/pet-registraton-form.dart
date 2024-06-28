@@ -66,13 +66,13 @@ class _PetRegistrationFormState extends State<PetRegistrationForm> {
   Future<void> registerPet(TapDownDetails details) async {
     if (_formKey.currentState!.validate()) {
       try {
-        final userId = await Helping().getToken("id");
-        final token = await Helping().getToken("token");
+        final userId = await Helping.getToken("id");
+        final token = await Helping.getToken("token");
         Map<String, String> headers = {
           'Authorization': 'Bearer $token',
           'Content-Type': 'application/json',
         };
-        final imageBase64 = await Helping().getBase64Image(widget.image);
+        final imageBase64 = await Helping.getBase64Image(widget.image);
 
         final formData = {
           "name": _nameController.text,
@@ -87,10 +87,7 @@ class _PetRegistrationFormState extends State<PetRegistrationForm> {
           "vaccinated": _vaccinated,
           "userId": userId,
         };
-        final url = Uri.parse("http://192.168.0.14:8080/mobile/api/pet/");
-        // final url =
-        //     Uri.parse("http://10.8.151.203:8080/mobile/api/user-registration");
-
+        final url = Uri.parse("http://vetner360.koyeb.app/mobile/api/pet/");
         final response =
             await http.post(url, headers: headers, body: jsonEncode(formData));
         final data = jsonDecode(response.body);
@@ -101,12 +98,11 @@ class _PetRegistrationFormState extends State<PetRegistrationForm> {
             backgroundColor: DoctorColor.red,
           ));
         } else {
-          Navigator.of(context).popUntil(
-              (route) => route.isFirst); // Pop all routes until the first one
+          Navigator.of(context).popUntil((route) => route.isFirst);
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => PetOwnerDashboard("0"),
+                builder: (context) => PetOwnerDashboard(),
               ));
         }
       } catch (e) {

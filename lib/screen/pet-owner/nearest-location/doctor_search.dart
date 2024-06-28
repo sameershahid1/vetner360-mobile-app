@@ -3,17 +3,17 @@ import 'package:get/get.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/globalclass/icons.dart';
-import 'package:vetner360/screen/pet-owner/nearest-location/doctor-detail.dart';
+import 'package:vetner360/screen/pet-owner/nearest-location/doctor_detail.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 
-class DoctorList extends StatefulWidget {
-  const DoctorList({Key? key}) : super(key: key);
+class DoctorSearch extends StatefulWidget {
+  const DoctorSearch({Key? key}) : super(key: key);
 
   @override
-  State<DoctorList> createState() => _DoctorListState();
+  State<DoctorSearch> createState() => _DoctorSearchState();
 }
 
-class _DoctorListState extends State<DoctorList> {
+class _DoctorSearchState extends State<DoctorSearch> {
   dynamic size;
   double height = 0.00;
   double width = 0.00;
@@ -173,11 +173,11 @@ class _DoctorListState extends State<DoctorList> {
                     splashColor: DoctorColor.transparent,
                     highlightColor: DoctorColor.transparent,
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return const DoctorDetails();
-                        },
-                      ));
+                      // Navigator.push(context, MaterialPageRoute(
+                      //   builder: (context) {
+                      //     return const DoctorDetails();
+                      //   },
+                      // ));
                     },
                     child: Container(
                       decoration: BoxDecoration(

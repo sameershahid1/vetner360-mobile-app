@@ -1,4 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:vetner360/helping/chat_request.dart';
 import 'package:vetner360/screen/pet-owner/home/dashboard.dart';
 import 'package:vetner360/screen/doctor/home/dashboard.dart';
 import 'package:vetner360/screen/guest/home/dashboard.dart';
@@ -20,12 +21,20 @@ class SignInController extends GetxController {
   Future<void> signAccount(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       try {
+        var isInternet = await Helping.checkConnection();
+        if (!isInternet) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("No Internet is connected"),
+            backgroundColor: DoctorColor.red,
+          ));
+          return;
+        }
+
         final formData = {
           "email": emailController.text.trim(),
           "password": passwordController.text.trim(),
         };
-        final url = Uri.parse("http://192.168.0.14:8080/mobile/api/login");
-
+        final url = Uri.parse("http://vetner360.koyeb.app/mobile/api/login");
         final response = await http.post(url,
             headers: {'Content-Type': 'application/json'},
             body: jsonEncode(formData));
@@ -38,14 +47,15 @@ class SignInController extends GetxController {
         } else {
           final token = data['token'];
           final userId = data['userId'];
-          await Helping().saveToken("token", token);
-          await Helping().saveToken("id", userId);
+
+          await Helping.saveToken("token", token);
+          await Helping.saveToken("id", userId);
 
           switch (data['roleType']) {
             case 1:
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) {
-                  return PetOwnerDashboard("0");
+                  return PetOwnerDashboard();
                 },
               ));
               break;

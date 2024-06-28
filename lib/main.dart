@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:vetner360/screen/authentication/splash.dart';
 import 'package:vetner360/theme/theme.dart';
 import 'package:vetner360/theme/themecontroller.dart';
@@ -12,6 +13,8 @@ import 'package:intl/intl_standalone.dart'
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await findSystemLocale();
+
+  Intl.defaultLocale = 'en_US';
 
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);

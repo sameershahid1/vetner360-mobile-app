@@ -75,8 +75,8 @@ class _PetEditFormState extends State<PetEditForm> {
   Future<void> editPet(TapDownDetails details) async {
     if (_formKey.currentState!.validate()) {
       try {
-        final userId = await Helping().getToken("id");
-        final token = await Helping().getToken("token");
+        final userId = await Helping.getToken("id");
+        final token = await Helping.getToken("token");
         Map<String, String> headers = {
           'Authorization': 'Bearer $token',
           'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ class _PetEditFormState extends State<PetEditForm> {
           "userId": userId,
         };
         final url = Uri.parse(
-            "http://192.168.0.14:8080/mobile/api/pet/${widget.petItem['token']}");
+            "http:// 192.168.0.14:8080/mobile/api/pet/${widget.petItem['token']}");
         // final url =
         //     Uri.parse("http://10.8.151.203:8080/mobile/api/user-registration");
 
@@ -113,7 +113,7 @@ class _PetEditFormState extends State<PetEditForm> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => PetOwnerDashboard("0"),
+                builder: (context) => PetOwnerDashboard(),
               ));
         }
       } catch (e) {

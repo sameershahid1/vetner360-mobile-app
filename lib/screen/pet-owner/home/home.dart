@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/globalclass/icons.dart';
-import 'package:vetner360/screen/pet-owner/home/doctor_list.dart';
+import 'package:vetner360/screen/pet-owner/home/pet_search.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 
 class DoctorHome extends StatefulWidget {
@@ -130,7 +130,7 @@ class _DoctorHomeState extends State<DoctorHome> {
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
-                        return const DoctorList();
+                        return const PetSearch();
                       },
                     ));
                   },

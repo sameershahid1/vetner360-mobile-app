@@ -1,11 +1,11 @@
-import 'package:get/get.dart';
-import 'package:flutter/material.dart';
+import 'package:vetner360/component/pet-owner-registration/index.dart';
 import 'package:vetner360/component/doctor-registration/index.dart';
 import 'package:vetner360/component/guest-registration/index.dart';
-import 'package:vetner360/component/pet-owner-registration/index.dart';
+import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/controller/signup.dart';
 import 'package:vetner360/globalclass/color.dart';
-import 'package:vetner360/globalclass/fontstyle.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Signup extends StatelessWidget {
   const Signup({super.key});
@@ -50,7 +50,7 @@ class Signup extends StatelessWidget {
                       ),
                       Tab(
                         child: Text(
-                          "Guest".tr,
+                          "Buyer".tr,
                         ),
                       ),
                       Tab(

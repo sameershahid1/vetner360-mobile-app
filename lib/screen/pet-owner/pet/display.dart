@@ -21,9 +21,7 @@ class DisplayPictureScreen extends StatelessWidget {
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(
             builder: (context) {
-              return PetRegistrationForm(
-                image: this.image,
-              );
+              return PetRegistrationForm(image: image);
             },
           ));
         },

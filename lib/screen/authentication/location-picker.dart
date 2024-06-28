@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:vetner360/controller/doctor-location.dart';
+import 'package:vetner360/controller/doctor_location.dart';
 
 class LocationPicker extends StatelessWidget {
   final locationController = Get.put(DoctorLocationController);

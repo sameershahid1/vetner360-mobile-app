@@ -1,5 +1,7 @@
 import 'package:get/get_rx/get_rx.dart';
-import 'package:vetner360/controller/doctor-location.dart';
+import 'package:vetner360/controller/doctor_location.dart';
+import 'package:vetner360/globalclass/color.dart';
+import 'package:vetner360/helping/help.dart';
 import 'package:vetner360/screen/authentication/location-picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -72,6 +74,15 @@ class DoctorRegistrationController extends GetxController {
   Future<void> createAccount(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       try {
+        var isInternet = await Helping.checkConnection();
+        if (!isInternet) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("No Internet is connected"),
+            backgroundColor: DoctorColor.red,
+          ));
+          return;
+        }
+
         final formData = {
           "firstName": firstNameController.text,
           "lastName": lastNameController.text,
@@ -87,7 +98,7 @@ class DoctorRegistrationController extends GetxController {
         };
 
         final url = Uri.parse(
-            "http://192.168.0.14:8080/mobile/api/doctor-registration");
+            "http://vetner360.koyeb.app/mobile/api/doctor-registration");
 
         final response = await http.post(url,
             headers: {'Content-Type': 'application/json'},

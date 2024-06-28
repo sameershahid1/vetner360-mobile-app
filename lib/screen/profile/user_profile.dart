@@ -7,18 +7,17 @@ import 'package:vetner360/helping/help.dart';
 import 'package:vetner360/screen/authentication/signin.dart';
 import 'package:vetner360/screen/profile/cms.dart';
 import 'package:vetner360/screen/profile/editprofile.dart';
-import 'package:vetner360/screen/profile/favorites.dart';
 import 'package:vetner360/screen/profile/notification.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 
-class DoctorProfile extends StatefulWidget {
-  const DoctorProfile({Key? key}) : super(key: key);
+class UserProfile extends StatefulWidget {
+  const UserProfile({Key? key}) : super(key: key);
 
   @override
-  State<DoctorProfile> createState() => _DoctorProfileState();
+  State<UserProfile> createState() => _UserProfileState();
 }
 
-class _DoctorProfileState extends State<DoctorProfile> {
+class _UserProfileState extends State<UserProfile> {
   dynamic size;
   double height = 0.00;
   double width = 0.00;
@@ -124,49 +123,6 @@ class _DoctorProfileState extends State<DoctorProfile> {
                     ),
                     Text(
                       "Edit_Profile".tr,
-                      style: iregular.copyWith(
-                        fontSize: 16,
-                      ),
-                    ),
-                    const Spacer(),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: height / 46,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: height / 120,
-              ),
-              const Divider(),
-              SizedBox(
-                height: height / 120,
-              ),
-              InkWell(
-                splashColor: DoctorColor.transparent,
-                highlightColor: DoctorColor.transparent,
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return const DoctorFavorites();
-                    },
-                  ));
-                },
-                child: Row(
-                  children: [
-                    Image.asset(
-                      DoctorPngimage.unlike,
-                      height: height / 46,
-                      color: themedata.isdark
-                          ? DoctorColor.white
-                          : DoctorColor.black,
-                    ),
-                    SizedBox(
-                      width: width / 20,
-                    ),
-                    Text(
-                      "Favorite".tr,
                       style: iregular.copyWith(
                         fontSize: 16,
                       ),
@@ -359,45 +315,6 @@ class _DoctorProfileState extends State<DoctorProfile> {
                 height: height / 120,
               ),
               InkWell(
-                splashColor: DoctorColor.transparent,
-                highlightColor: DoctorColor.transparent,
-                onTap: () {
-                  _showbottomsheet();
-                },
-                child: Row(
-                  children: [
-                    Image.asset(
-                      DoctorPngimage.swap,
-                      height: height / 36,
-                      color: themedata.isdark
-                          ? DoctorColor.white
-                          : DoctorColor.black,
-                    ),
-                    SizedBox(
-                      width: width / 26,
-                    ),
-                    Text(
-                      "Change_layout".tr,
-                      style: iregular.copyWith(
-                        fontSize: 16,
-                      ),
-                    ),
-                    const Spacer(),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: height / 46,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: height / 120,
-              ),
-              const Divider(),
-              SizedBox(
-                height: height / 120,
-              ),
-              InkWell(
                 child: Row(
                   children: [
                     Image.asset(
@@ -484,107 +401,6 @@ class _DoctorProfileState extends State<DoctorProfile> {
     );
   }
 
-  _showbottomsheet() {
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext context) {
-          return StatefulBuilder(
-              builder: (BuildContext context, StateSetter setState) {
-            return Container(
-              decoration: BoxDecoration(
-                // color: Colors.white,
-                borderRadius: BorderRadius.circular(7),
-              ),
-              height: height / 4,
-              child: Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(
-                      top: 10,
-                      bottom: 10,
-                    ),
-                    child: Text('selectapplicationlayout'.tr,
-                        style: isemibold.copyWith(
-                          fontSize: 14,
-                        )),
-                  ),
-                  const Divider(),
-                  SizedBox(
-                    height: height / 26,
-                    child: InkWell(
-                      highlightColor: DoctorColor.transparent,
-                      splashColor: DoctorColor.transparent,
-                      onTap: () async {
-                        await Get.updateLocale(const Locale('en', 'US'));
-                        // ignore: use_build_context_synchronously
-                        Navigator.of(context).pop();
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'ltr'.tr,
-                            style: isemibold.copyWith(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const Divider(),
-                  SizedBox(
-                    height: height / 26,
-                    child: InkWell(
-                      highlightColor: DoctorColor.transparent,
-                      splashColor: DoctorColor.transparent,
-                      onTap: () async {
-                        await Get.updateLocale(const Locale('ar', 'ab'));
-                        // ignore: use_build_context_synchronously
-                        Navigator.of(context).pop();
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'rtl'.tr,
-                            style: isemibold.copyWith(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const Divider(),
-                  SizedBox(
-                    height: height / 26,
-                    child: InkWell(
-                      highlightColor: DoctorColor.transparent,
-                      splashColor: DoctorColor.transparent,
-                      onTap: () async {
-                        Navigator.of(context).pop();
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'cancel'.tr,
-                            style: isemibold.copyWith(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          });
-        });
-  }
-
   logout() {
     showModalBottomSheet(
         context: context,
@@ -624,7 +440,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                         InkWell(
                           splashColor: DoctorColor.transparent,
                           highlightColor: DoctorColor.transparent,
-                          onTap: () {
+                          onTapDown: (TapDownDetails tapDetail) {
                             Get.back();
                           },
                           child: Container(
@@ -649,8 +465,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
                           splashColor: DoctorColor.transparent,
                           highlightColor: DoctorColor.transparent,
                           onTapDown: (TapDownDetails details) async {
-                            await Helping().saveToken("token", "");
-                            await Helping().saveToken("id", "");
+                            await Helping.saveToken("token", "");
+                            await Helping.saveToken("id", "");
                             Get.to(() => const Signin());
                           },
                           child: Container(

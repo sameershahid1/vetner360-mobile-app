@@ -46,7 +46,7 @@ class _ActivityRegisterFormState extends State<ActivityRegisterForm> {
   Future<void> createPetActivity(TapDownDetails details) async {
     if (_formKey.currentState!.validate()) {
       try {
-        final token = await Helping().getToken("token");
+        final token = await Helping.getToken("token");
         Map<String, String> headers = {
           'Authorization': 'Bearer $token',
           'Content-Type': 'application/json',
@@ -60,9 +60,7 @@ class _ActivityRegisterFormState extends State<ActivityRegisterForm> {
           "petId": widget.petId,
         };
         final url =
-            Uri.parse("http://192.168.0.14:8080/mobile/api/pet/activity/");
-        // final url =
-        //     Uri.parse("http://10.8.151.203:8080/mobile/api/user-registration");
+            Uri.parse("http:// 192.168.0.14:8080/mobile/api/pet/activity/");
 
         final response =
             await http.post(url, headers: headers, body: jsonEncode(formData));
@@ -79,7 +77,7 @@ class _ActivityRegisterFormState extends State<ActivityRegisterForm> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => PetOwnerDashboard("0"),
+                builder: (context) => PetOwnerDashboard(),
               ));
         }
       } catch (e) {

@@ -44,8 +44,8 @@ class PetOwnerRegistrationController extends GetxController {
           "userType": 1,
         };
 
-        final url =
-            Uri.parse("http://192.168.0.14:8080/mobile/api/user-registration");
+        final url = Uri.parse(
+            "http://vetner360.koyeb.app/mobile/api/user-registration");
 
         final response = await http.post(url,
             headers: {'Content-Type': 'application/json'},

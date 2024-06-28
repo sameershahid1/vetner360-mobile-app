@@ -4,7 +4,7 @@ import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/icons.dart';
-import 'package:vetner360/controller/sigin.dart';
+import 'package:vetner360/controller/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -229,11 +229,14 @@ class Signin extends StatelessWidget {
                               splashColor: DoctorColor.transparent,
                               highlightColor: DoctorColor.transparent,
                               onTap: () {
-                                Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) {
-                                    return const DoctorForgotpassword();
-                                  },
-                                ));
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return const DoctorForgotpassword();
+                                    },
+                                  ),
+                                );
                               },
                               child: Text(
                                 "Forgot_password".tr,

@@ -69,7 +69,7 @@ class _GuestRegistrationState extends State<GuestRegistration> {
           "userType": 2,
         };
         final url =
-            Uri.parse("http://192.168.0.14:8080/mobile/api/user-registration");
+            Uri.parse("http:// 192.168.0.14:8080/mobile/api/user-registration");
 
         final response = await http.post(url,
             headers: {'Content-Type': 'application/json'},

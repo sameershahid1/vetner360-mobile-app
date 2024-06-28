@@ -30,7 +30,7 @@ class _ActivityListState extends State<ActivityList> {
     _pagingController.addPageRequestListener((pageKey) {
       try {
         Request()
-            .getMyPetActivity(pageKey, _limit, widget.petId)
+            .getMyPetActivity(pageKey, _limit, widget.petId, context)
             .then((latestPetActivity) {
           setState(() {
             final isLastPage = latestPetActivity.length < this._limit;

@@ -3,7 +3,7 @@ import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/helping/help.dart';
 import 'package:vetner360/helping/request.dart';
-import 'package:vetner360/screen/pet-owner/pet/my-pet-detail.dart';
+import 'package:vetner360/screen/pet-owner/pet/my_pet_detail.dart';
 import 'package:vetner360/screen/pet-owner/pet/pet-edit-form.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 import 'package:get/get.dart';
@@ -43,8 +43,8 @@ class _PetListItemState extends State<PetListItem> {
     }
 
     Future<void> deletePet() async {
-      String? userId = await Helping().getToken("id");
-      await Request().deletePet(widget.petItem['token'], userId);
+      String? userId = await Helping.getToken("id");
+      await Request().deletePet(widget.petItem['token'], userId, context);
     }
 
     return InkWell(
@@ -76,7 +76,7 @@ class _PetListItemState extends State<PetListItem> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Image.network(
-                      'http://192.168.0.14:8080/${widget.petItem['imagePath']}',
+                      'http://vetner360.koyeb.app/${widget.petItem['imagePath']}',
                       height: height / 7,
                       width: height / 7,
                       fit: BoxFit.fill,
