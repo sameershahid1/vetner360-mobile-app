@@ -1,7 +1,6 @@
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:vetner360/component/chat-user-item/chat_user_item.dart';
-import 'package:vetner360/controller/my_pet_list.dart';
-import 'package:vetner360/controller/users_chat_list.dart';
+import 'package:vetner360/controller/users_chat_list_controller.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/icons.dart';
@@ -19,6 +18,9 @@ class UsersChatList extends StatelessWidget {
 
     return GetBuilder<UsersChatListController>(
       init: UsersChatListController(context),
+      dispose: (_) {
+        _.controller?.searchController.dispose();
+      },
       builder: (_) => Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -51,6 +53,8 @@ class UsersChatList extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(left: 13, right: 13),
                 child: TextFormField(
+                  controller: _.searchController,
+                  onTap: _.searchUser,
                   scrollPadding: EdgeInsets.only(
                       bottom: MediaQuery.of(context).viewInsets.bottom),
                   style: iregular.copyWith(
@@ -91,7 +95,8 @@ class UsersChatList extends StatelessWidget {
             pagingController: _.pagingController.value,
             builderDelegate: PagedChildBuilderDelegate<dynamic>(
               itemBuilder: (context, item, index) => ChatUserItem(
-                key: ValueKey(item['id']),
+                key: ValueKey(item['token']),
+                detailInfo: item,
               ),
             ),
           ),

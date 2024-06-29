@@ -1,5 +1,5 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:vetner360/controller/doctor_detail.dart';
+import 'package:vetner360/controller/doctor_detail_controller.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/icons.dart';

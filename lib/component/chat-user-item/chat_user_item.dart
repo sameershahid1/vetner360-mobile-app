@@ -1,28 +1,57 @@
-import 'package:flutter/material.dart';
-import 'package:vetner360/globalclass/fontstyle.dart';
-import 'package:vetner360/globalclass/icons.dart';
 import 'package:vetner360/screen/chat/user_chat.dart';
+import 'package:vetner360/globalclass/fontstyle.dart';
+import 'package:vetner360/helping/chat_request.dart';
+import 'package:vetner360/globalclass/icons.dart';
+import 'package:vetner360/helping/help.dart';
+import 'package:flutter/material.dart';
 
-class ChatUserItem extends StatelessWidget {
-  ChatUserItem({super.key});
-  final String name = "Dr. David Patel";
-  final String latestMessage = "Hi sameer what are you doing";
+class ChatUserItem extends StatefulWidget {
+  const ChatUserItem({super.key, required this.detailInfo});
+  final detailInfo;
+
+  @override
+  State<ChatUserItem> createState() => _ChatUserItemState();
+}
+
+class _ChatUserItemState extends State<ChatUserItem> {
   final img = DoctorPngimage.d1;
+  dynamic size;
+  double height = 0;
+  String content = "";
+  String time = "";
+
+  @override
+  void initState() {
+    Helping.getToken("id").then((String? id) {
+      if (id != null) {
+        String roomId = "${id}${widget.detailInfo['token']}";
+        ChatRequest.getLatestMessage(roomId, context).then((message) {
+          setState(() {
+            content = message['content'];
+            time =
+                "${DateTime.parse(message['created_at']).hour}:${DateTime.parse(message['created_at']).minute}";
+          });
+        });
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    dynamic size = MediaQuery.of(context).size;
-    double height = size.height;
+    size = MediaQuery.of(context).size;
+    height = size.height;
+
     return InkWell(
       onTapDown: (TapDownDetails tapDownDetails) {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) {
-        //       return UserChat();
-        //     },
-        //   ),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return UserChat(detailInfo: widget.detailInfo);
+            },
+          ),
+        );
       },
       child: Column(
         children: [
@@ -47,19 +76,19 @@ class ChatUserItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      name,
+                      "${widget.detailInfo['firstName']} ${widget.detailInfo['lastName']}",
                       style: isemibold.copyWith(fontSize: 17),
                     ),
                     Text(
-                      latestMessage,
-                    )
+                      "${content}",
+                    ),
                   ],
                 ),
                 SizedBox(
                   width: 10,
                 ),
                 Text(
-                  "10:45pm",
+                  "${time}",
                 ),
               ],
             ),

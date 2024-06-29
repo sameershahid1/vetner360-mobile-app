@@ -62,8 +62,36 @@ class ChatRequest {
     }
   }
 
-  static Future<List?> loadChatParticipant(
-      int page, int limit, BuildContext context) async {
+  static Future<dynamic?> getLatestMessage(
+      String roomId, BuildContext context) async {
+    try {
+      var isInternet = await Helping.checkConnection();
+      if (!isInternet) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("No Internet is connected"),
+          backgroundColor: DoctorColor.red,
+        ));
+        return null;
+      }
+
+      final token = await Helping.getToken("token");
+      Map<String, String> headers = {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      };
+      final url = Uri.parse(
+          "http://192.168.0.14:8080/mobile/api/chat/messages/latest/${roomId}");
+      final response = await http.get(url, headers: headers);
+      final data = jsonDecode(response.body);
+      return data['data'];
+    } catch (e) {
+      print("Error: $e");
+      return null;
+    }
+  }
+
+  static Future<List> loadChatParticipant(String userId, int page,
+      String search, int limit, BuildContext context) async {
     try {
       var isInternet = await Helping.checkConnection();
       if (!isInternet) {
@@ -74,30 +102,30 @@ class ChatRequest {
         return [];
       }
 
-      final roomId = await Helping.getToken("id");
       final token = await Helping.getToken("token");
       final formData = {
         "page": page + 1,
         "limit": limit,
+        "search": search.length == 0 ? null : search,
       };
       Map<String, String> headers = {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
       };
       final url = Uri.parse(
-          "http://192.168.0.14:8080/mobile/api/chat/participant/${roomId}");
+          "http://192.168.0.14:8080/mobile/api/chat/participant/${userId}");
       final response =
           await http.post(url, headers: headers, body: jsonEncode(formData));
       final data = jsonDecode(response.body);
       return data['records'];
     } catch (e) {
       print("Error: $e");
-      return null;
+      return [];
     }
   }
 
-  static Future<void> setParticipant(
-      BuildContext context, String? userId, String roomId) async {
+  static Future<void> setParticipant(BuildContext context, String? userId,
+      String receiverId, String roomId) async {
     try {
       var isInternet = await Helping.checkConnection();
       if (!isInternet) {
@@ -111,6 +139,7 @@ class ChatRequest {
       final token = await Helping.getToken("token");
       final formData = {
         "userId": userId,
+        "receiverId": receiverId,
         "roomId": roomId,
       };
       Map<String, String> headers = {

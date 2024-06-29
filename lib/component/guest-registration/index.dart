@@ -68,8 +68,8 @@ class _GuestRegistrationState extends State<GuestRegistration> {
           "password": _passwordController.text,
           "userType": 2,
         };
-        final url =
-            Uri.parse("http:// 192.168.0.14:8080/mobile/api/user-registration");
+        final url = Uri.parse(
+            "http://vetner360.koyeb.app/mobile/api/user-registration");
 
         final response = await http.post(url,
             headers: {'Content-Type': 'application/json'},
@@ -351,81 +351,6 @@ class _GuestRegistrationState extends State<GuestRegistration> {
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: height / 26,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                    height: height / 500,
-                    width: width / 2.85,
-                    color: DoctorColor.border),
-                Text(
-                  "or".tr,
-                  style: imedium.copyWith(
-                      fontSize: 16, color: DoctorColor.textgrey),
-                ),
-                Container(
-                    height: height / 500,
-                    width: width / 2.85,
-                    color: DoctorColor.border),
-              ],
-            ),
-            SizedBox(
-              height: height / 36,
-            ),
-            Container(
-              width: width / 1,
-              height: height / 14,
-              decoration: BoxDecoration(
-                  border: Border.all(color: DoctorColor.border),
-                  borderRadius: BorderRadius.circular(10)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    DoctorPngimage.google,
-                    height: height / 36,
-                  ),
-                  SizedBox(
-                    width: width / 26,
-                  ),
-                  Text(
-                    "Continue_with_Google".tr,
-                    style: imedium.copyWith(fontSize: 14),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: height / 56,
-            ),
-            Container(
-              width: width / 1,
-              height: height / 14,
-              decoration: BoxDecoration(
-                  border: Border.all(color: DoctorColor.border),
-                  borderRadius: BorderRadius.circular(10)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    DoctorPngimage.facebook,
-                    height: height / 30,
-                  ),
-                  SizedBox(
-                    width: width / 26,
-                  ),
-                  Text(
-                    "Continue_with_Facebook".tr,
-                    style: imedium.copyWith(fontSize: 14),
                   ),
                 ],
               ),

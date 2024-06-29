@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
-import 'package:vetner360/controller/doctor_registration.dart';
+import 'package:vetner360/controller/doctor_registration_controller.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/globalclass/icons.dart';
@@ -19,6 +19,8 @@ class DoctorRegistration extends StatelessWidget {
         init: DoctorRegistrationController(),
         dispose: (_) {
           _.controller?.firstNameController.dispose();
+          _.controller?.experienceController.dispose();
+          _.controller?.bioController.dispose();
           _.controller?.lastNameController.dispose();
           _.controller?.emailController.dispose();
           _.controller?.phoneNoController.dispose();
@@ -118,6 +120,44 @@ class DoctorRegistration extends StatelessWidget {
                             height: height / 26,
                           ),
                           TextFormField(
+                            controller: _.bioController,
+                            validator: ValidationBuilder()
+                                .minLength(10)
+                                .maxLength(255)
+                                .build(),
+                            maxLines: 5,
+                            scrollPadding: EdgeInsets.only(
+                                bottom:
+                                    MediaQuery.of(context).viewInsets.bottom),
+                            style: iregular.copyWith(
+                                fontSize: 14, color: DoctorColor.textgrey),
+                            decoration: InputDecoration(
+                              hintText: 'Bio'.tr,
+                              fillColor: _.themedata.isdark
+                                  ? DoctorColor.lightblack
+                                  : DoctorColor.bgcolor,
+                              filled: true,
+                              prefixIcon: Padding(
+                                padding: const EdgeInsets.all(15),
+                                child: Icon(Icons.description_outlined,
+                                    color: DoctorColor.textgrey),
+                              ),
+                              hintStyle: iregular.copyWith(
+                                  fontSize: 14, color: DoctorColor.textgrey),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: const BorderSide(
+                                      color: DoctorColor.border)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: const BorderSide(
+                                      color: DoctorColor.border)),
+                            ),
+                          ),
+                          SizedBox(
+                            height: height / 26,
+                          ),
+                          TextFormField(
                               controller: _.fatherNameController,
                               validator: ValidationBuilder()
                                   .minLength(3)
@@ -192,7 +232,7 @@ class DoctorRegistration extends StatelessWidget {
                             height: height / 26,
                           ),
                           TextFormField(
-                              controller: _.clinicNameController,
+                              controller: _.experienceController,
                               validator: ValidationBuilder()
                                   .minLength(3)
                                   .maxLength(25)
@@ -203,7 +243,7 @@ class DoctorRegistration extends StatelessWidget {
                               style: iregular.copyWith(
                                   fontSize: 14, color: DoctorColor.textgrey),
                               decoration: InputDecoration(
-                                hintText: 'Clinic Name'.tr,
+                                hintText: 'Experience'.tr,
                                 fillColor: _.themedata.isdark
                                     ? DoctorColor.lightblack
                                     : DoctorColor.bgcolor,
@@ -226,6 +266,45 @@ class DoctorRegistration extends StatelessWidget {
                                     borderSide: const BorderSide(
                                         color: DoctorColor.border)),
                               )),
+                          SizedBox(
+                            height: height / 26,
+                          ),
+                          TextFormField(
+                            controller: _.clinicNameController,
+                            validator: ValidationBuilder()
+                                .minLength(3)
+                                .maxLength(25)
+                                .build(),
+                            scrollPadding: EdgeInsets.only(
+                                bottom:
+                                    MediaQuery.of(context).viewInsets.bottom),
+                            style: iregular.copyWith(
+                                fontSize: 14, color: DoctorColor.textgrey),
+                            decoration: InputDecoration(
+                              hintText: 'Clinic Name'.tr,
+                              fillColor: _.themedata.isdark
+                                  ? DoctorColor.lightblack
+                                  : DoctorColor.bgcolor,
+                              filled: true,
+                              prefixIcon: Padding(
+                                padding: const EdgeInsets.all(15),
+                                child: Image.asset(
+                                  DoctorPngimage.user,
+                                  height: height / 36,
+                                ),
+                              ),
+                              hintStyle: iregular.copyWith(
+                                  fontSize: 14, color: DoctorColor.textgrey),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: const BorderSide(
+                                      color: DoctorColor.border)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: const BorderSide(
+                                      color: DoctorColor.border)),
+                            ),
+                          ),
                           SizedBox(
                             height: height / 26,
                           ),
@@ -446,81 +525,6 @@ class DoctorRegistration extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: height / 26,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                            height: height / 500,
-                            width: width / 2.85,
-                            color: DoctorColor.border),
-                        Text(
-                          "or".tr,
-                          style: imedium.copyWith(
-                              fontSize: 16, color: DoctorColor.textgrey),
-                        ),
-                        Container(
-                            height: height / 500,
-                            width: width / 2.85,
-                            color: DoctorColor.border),
-                      ],
-                    ),
-                    SizedBox(
-                      height: height / 36,
-                    ),
-                    Container(
-                      width: width / 1,
-                      height: height / 14,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: DoctorColor.border),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            DoctorPngimage.google,
-                            height: height / 36,
-                          ),
-                          SizedBox(
-                            width: width / 26,
-                          ),
-                          Text(
-                            "Continue_with_Google".tr,
-                            style: imedium.copyWith(fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: height / 56,
-                    ),
-                    Container(
-                      width: width / 1,
-                      height: height / 14,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: DoctorColor.border),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            DoctorPngimage.facebook,
-                            height: height / 30,
-                          ),
-                          SizedBox(
-                            width: width / 26,
-                          ),
-                          Text(
-                            "Continue_with_Facebook".tr,
-                            style: imedium.copyWith(fontSize: 14),
                           ),
                         ],
                       ),

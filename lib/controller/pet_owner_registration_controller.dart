@@ -19,7 +19,7 @@ class PetOwnerRegistrationController extends GetxController {
     if (value != passwordController.text) {
       return 'Passwords do not match';
     }
-    return null; // No error message, so it's valid
+    return null;
   }
 
   void showErrorSnackBar(

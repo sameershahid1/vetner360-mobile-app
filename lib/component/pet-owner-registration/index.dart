@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
-import 'package:vetner360/controller/pet_owner_registration.dart';
+import 'package:vetner360/controller/pet_owner_registration_controller.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/globalclass/icons.dart';
@@ -287,81 +287,6 @@ class PetOwnerRegistration extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: height / 26,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                            height: height / 500,
-                            width: width / 2.85,
-                            color: DoctorColor.border),
-                        Text(
-                          "or".tr,
-                          style: imedium.copyWith(
-                              fontSize: 16, color: DoctorColor.textgrey),
-                        ),
-                        Container(
-                            height: height / 500,
-                            width: width / 2.85,
-                            color: DoctorColor.border),
-                      ],
-                    ),
-                    SizedBox(
-                      height: height / 36,
-                    ),
-                    Container(
-                      width: width / 1,
-                      height: height / 14,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: DoctorColor.border),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            DoctorPngimage.google,
-                            height: height / 36,
-                          ),
-                          SizedBox(
-                            width: width / 26,
-                          ),
-                          Text(
-                            "Continue_with_Google".tr,
-                            style: imedium.copyWith(fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: height / 56,
-                    ),
-                    Container(
-                      width: width / 1,
-                      height: height / 14,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: DoctorColor.border),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            DoctorPngimage.facebook,
-                            height: height / 30,
-                          ),
-                          SizedBox(
-                            width: width / 26,
-                          ),
-                          Text(
-                            "Continue_with_Facebook".tr,
-                            style: imedium.copyWith(fontSize: 14),
                           ),
                         ],
                       ),

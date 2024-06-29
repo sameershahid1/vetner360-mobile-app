@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vetner360/controller/pet_owner_pannel.dart';
+import 'package:vetner360/controller/pet_owner_pannel_controller.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/globalclass/icons.dart';

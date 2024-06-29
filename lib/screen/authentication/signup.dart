@@ -1,8 +1,8 @@
 import 'package:vetner360/component/pet-owner-registration/index.dart';
-import 'package:vetner360/component/doctor-registration/index.dart';
+import 'package:vetner360/component/doctor-registration/doctor_registration.dart';
 import 'package:vetner360/component/guest-registration/index.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
-import 'package:vetner360/controller/signup.dart';
+import 'package:vetner360/controller/signup_controller.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,6 +1,6 @@
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:vetner360/component/pet-list-item/index.dart';
-import 'package:vetner360/controller/my_pet_list.dart';
+import 'package:vetner360/controller/my_pet_list_controller.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:flutter/material.dart';

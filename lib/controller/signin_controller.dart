@@ -1,5 +1,4 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:vetner360/helping/chat_request.dart';
 import 'package:vetner360/screen/pet-owner/home/dashboard.dart';
 import 'package:vetner360/screen/doctor/home/dashboard.dart';
 import 'package:vetner360/screen/guest/home/dashboard.dart';
@@ -48,6 +47,7 @@ class SignInController extends GetxController {
           final token = data['token'];
           final userId = data['userId'];
 
+          await Helping.saveToken("type", data['roleType'].toString());
           await Helping.saveToken("token", token);
           await Helping.saveToken("id", userId);
 
@@ -73,7 +73,6 @@ class SignInController extends GetxController {
                 },
               ));
               break;
-            default:
           }
         }
       } catch (e) {

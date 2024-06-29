@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/screen/pet-owner/activity/activity-list.dart';
-import 'package:vetner360/screen/pet-owner/pet/pet-edit-form.dart';
+import 'package:vetner360/screen/pet-owner/pet/pet_edit_form.dart';
 
 class PetInfo extends StatefulWidget {
   final petItem;

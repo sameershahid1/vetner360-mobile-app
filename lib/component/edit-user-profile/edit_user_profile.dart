@@ -1,39 +1,22 @@
+import 'package:vetner360/controller/edit_user_profile_controller.dart';
+import 'package:vetner360/globalclass/fontstyle.dart';
+import 'package:vetner360/globalclass/color.dart';
+import 'package:vetner360/globalclass/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vetner360/globalclass/icons.dart';
-import 'package:vetner360/theme/themecontroller.dart';
 
-import '../../globalclass/color.dart';
-import '../../globalclass/fontstyle.dart';
-
-class DoctorEditprofile extends StatefulWidget {
-  const DoctorEditprofile({Key? key}) : super(key: key);
-
-  @override
-  State<DoctorEditprofile> createState() => _BidArtEditprofileState();
-}
-
-class _BidArtEditprofileState extends State<DoctorEditprofile> {
-  dynamic size;
-  double height = 0.00;
-  double width = 0.00;
-  final themedata = Get.put(DoctorThemecontroler());
+class EditUserProfile extends StatelessWidget {
+  const EditUserProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
-    height = size.height;
-    width = size.width;
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        surfaceTintColor: DoctorColor.white,
-        title: Text(
-          "Edit_Profile".tr,
-          style: isemibold.copyWith(fontSize: 20),
-        ),
-      ),
-      body: Padding(
+    dynamic size = MediaQuery.of(context).size;
+    double height = size.height;
+    double width = size.width;
+
+    return GetBuilder<EditUserProfileController>(
+      init: EditUserProfileController(),
+      builder: (_) => Padding(
         padding:
             EdgeInsets.symmetric(horizontal: width / 36, vertical: height / 36),
         child: Column(
@@ -58,14 +41,14 @@ class _BidArtEditprofileState extends State<DoctorEditprofile> {
                                 topRight: Radius.circular(5),
                                 topLeft: Radius.circular(5),
                                 bottomRight: Radius.circular(5)),
-                            color: themedata.isdark
+                            color: _.themedata.isdark
                                 ? DoctorColor.white
                                 : DoctorColor.black),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Image.asset(DoctorPngimage.edit,
                               height: height / 46,
-                              color: themedata.isdark
+                              color: _.themedata.isdark
                                   ? DoctorColor.black
                                   : DoctorColor.white),
                         ),
@@ -83,7 +66,7 @@ class _BidArtEditprofileState extends State<DoctorEditprofile> {
                     fontSize: 14, color: DoctorColor.textgrey),
                 decoration: InputDecoration(
                   hintText: 'Your_Name'.tr,
-                  fillColor: themedata.isdark
+                  fillColor: _.themedata.isdark
                       ? DoctorColor.lightblack
                       : DoctorColor.bgcolor,
                   filled: true,
@@ -106,7 +89,7 @@ class _BidArtEditprofileState extends State<DoctorEditprofile> {
                     fontSize: 14, color: DoctorColor.textgrey),
                 decoration: InputDecoration(
                   hintText: 'Email'.tr,
-                  fillColor: themedata.isdark
+                  fillColor: _.themedata.isdark
                       ? DoctorColor.lightblack
                       : DoctorColor.bgcolor,
                   filled: true,
@@ -129,7 +112,7 @@ class _BidArtEditprofileState extends State<DoctorEditprofile> {
                     fontSize: 14, color: DoctorColor.textgrey),
                 decoration: InputDecoration(
                   hintText: 'Phoneno'.tr,
-                  fillColor: themedata.isdark
+                  fillColor: _.themedata.isdark
                       ? DoctorColor.lightblack
                       : DoctorColor.bgcolor,
                   filled: true,

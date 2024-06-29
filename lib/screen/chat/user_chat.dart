@@ -214,9 +214,10 @@ class _UserChatState extends State<UserChat> {
     }
     String roomId = "${this._user.id}${widget.detailInfo["token"]}";
     if (this._messages.length == 0) {
-      await ChatRequest.setParticipant(context, this._user.id, roomId);
       await ChatRequest.setParticipant(
-          context, widget.detailInfo["token"], roomId);
+          context, this._user.id, widget.detailInfo["token"], roomId);
+      await ChatRequest.setParticipant(
+          context, widget.detailInfo["token"], this._user.id, roomId);
     }
     var messageBody = {
       "senderId": this._user.id,

@@ -6,7 +6,7 @@ import 'package:vetner360/globalclass/icons.dart';
 import 'package:vetner360/helping/help.dart';
 import 'package:vetner360/screen/authentication/signin.dart';
 import 'package:vetner360/screen/profile/cms.dart';
-import 'package:vetner360/screen/profile/editprofile.dart';
+import 'package:vetner360/screen/profile/edit_profile.dart';
 import 'package:vetner360/screen/profile/notification.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 
@@ -105,7 +105,7 @@ class _UserProfileState extends State<UserProfile> {
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
-                      return const DoctorEditprofile();
+                      return EditProfile();
                     },
                   ));
                 },

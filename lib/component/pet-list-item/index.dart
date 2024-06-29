@@ -4,7 +4,7 @@ import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/helping/help.dart';
 import 'package:vetner360/helping/request.dart';
 import 'package:vetner360/screen/pet-owner/pet/my_pet_detail.dart';
-import 'package:vetner360/screen/pet-owner/pet/pet-edit-form.dart';
+import 'package:vetner360/screen/pet-owner/pet/pet_edit_form.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 import 'package:get/get.dart';
 

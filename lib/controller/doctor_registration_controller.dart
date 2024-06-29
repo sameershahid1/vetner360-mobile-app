@@ -1,5 +1,5 @@
 import 'package:get/get_rx/get_rx.dart';
-import 'package:vetner360/controller/doctor_location.dart';
+import 'package:vetner360/controller/doctor_location_controller.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/helping/help.dart';
 import 'package:vetner360/screen/authentication/location-picker.dart';
@@ -14,6 +14,8 @@ class DoctorRegistrationController extends GetxController {
   final formKey = GlobalKey<FormState>();
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
+  final bioController = TextEditingController();
+  final experienceController = TextEditingController();
   final emailController = TextEditingController();
   final phoneNoController = TextEditingController();
   final fatherNameController = TextEditingController();
@@ -92,6 +94,8 @@ class DoctorRegistrationController extends GetxController {
           "fatherName": fatherNameController.text,
           "registration": registrationController.text,
           "clinicName": clinicNameController.text,
+          "experience": experienceController.text,
+          "bio": bioController.text,
           "longitude": this.longitude.value,
           "latitude": this.latitude.value,
           "userType": 3,
