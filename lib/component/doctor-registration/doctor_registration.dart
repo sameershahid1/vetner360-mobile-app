@@ -234,8 +234,8 @@ class DoctorRegistration extends StatelessWidget {
                           TextFormField(
                               controller: _.experienceController,
                               validator: ValidationBuilder()
-                                  .minLength(3)
-                                  .maxLength(25)
+                                  .minLength(1)
+                                  .maxLength(10)
                                   .build(),
                               scrollPadding: EdgeInsets.only(
                                   bottom:

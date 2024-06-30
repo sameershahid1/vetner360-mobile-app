@@ -13,7 +13,7 @@ class ChatRequest {
   static bool isConnection = false;
 
   static void createConnection() async {
-    socket = IO.io('http://192.168.0.14:8080/',
+    socket = IO.io('http://vetner360.koyeb.app/',
         IO.OptionBuilder().setTransports(['websocket']).build());
     socket.onConnect(_connectionWithServer);
     socket.onDisconnect(_disconnectWithServer);
@@ -52,7 +52,7 @@ class ChatRequest {
         'Content-Type': 'application/json',
       };
       final url = Uri.parse(
-          "http://192.168.0.14:8080/mobile/api/chat/messages/${roomId}");
+          "http://vetner360.koyeb.app/mobile/api/chat/messages/${roomId}");
       final response = await http.get(url, headers: headers);
       final data = jsonDecode(response.body);
       return data['records'];
@@ -80,7 +80,7 @@ class ChatRequest {
         'Content-Type': 'application/json',
       };
       final url = Uri.parse(
-          "http://192.168.0.14:8080/mobile/api/chat/messages/latest/${roomId}");
+          "http://vetner360.koyeb.app/mobile/api/chat/messages/latest/${roomId}");
       final response = await http.get(url, headers: headers);
       final data = jsonDecode(response.body);
       return data['data'];
@@ -113,7 +113,7 @@ class ChatRequest {
         'Content-Type': 'application/json',
       };
       final url = Uri.parse(
-          "http://192.168.0.14:8080/mobile/api/chat/participant/${userId}");
+          "http://vetner360.koyeb.app/mobile/api/chat/participant/${userId}");
       final response =
           await http.post(url, headers: headers, body: jsonEncode(formData));
       final data = jsonDecode(response.body);
@@ -147,7 +147,7 @@ class ChatRequest {
         'Content-Type': 'application/json',
       };
       final url = Uri.parse(
-          "http://192.168.0.14:8080/mobile/api/chat/chat-participant/add");
+          "http://vetner360.koyeb.app/mobile/api/chat/chat-participant/add");
       await http.post(url, headers: headers, body: jsonEncode(formData));
     } catch (e) {
       print("Error: $e");

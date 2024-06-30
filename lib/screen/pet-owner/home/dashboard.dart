@@ -1,4 +1,4 @@
-import 'package:vetner360/component/drawer/more_option_drawer.dart';
+import 'package:vetner360/component/drawer/pet_owner_drawer.dart';
 import 'package:vetner360/controller/pet_owner_dashboard_controller.dart';
 import '../../../theme/themecontroller.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ class PetOwnerDashboard extends StatelessWidget {
         child: GetBuilder<DoctorThemecontroler>(builder: (controller) {
           return Obx(() => Scaffold(
                 key: _.scaffoldKey,
-                drawer: const MoreOptionDrawer(),
+                drawer: const PetOwnerDrawer(),
                 bottomNavigationBar: _.bottomTabBar(),
                 body: _.pages[_.selectedItemIndex.value],
               ));

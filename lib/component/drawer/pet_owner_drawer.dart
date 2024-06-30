@@ -6,8 +6,8 @@ import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/icons.dart';
 import 'package:flutter/material.dart';
 
-class MoreOptionDrawer extends StatelessWidget {
-  const MoreOptionDrawer({super.key});
+class PetOwnerDrawer extends StatelessWidget {
+  const PetOwnerDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {

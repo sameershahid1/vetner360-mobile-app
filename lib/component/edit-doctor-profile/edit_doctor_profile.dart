@@ -1,4 +1,4 @@
-import 'package:vetner360/controller/edit_user_profile_controller.dart';
+import 'package:vetner360/controller/edit_profile_controller.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/icons.dart';
@@ -14,8 +14,8 @@ class EditDoctorProfile extends StatelessWidget {
     double height = size.height;
     double width = size.width;
 
-    return GetBuilder<EditUserProfileController>(
-      init: EditUserProfileController(),
+    return GetBuilder<EditProfileController>(
+      init: EditProfileController(),
       builder: (_) => Padding(
         padding:
             EdgeInsets.symmetric(horizontal: width / 36, vertical: height / 36),

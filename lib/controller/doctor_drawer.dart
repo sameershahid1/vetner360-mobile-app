@@ -1,15 +1,15 @@
 import 'package:vetner360/screen/profile/profile.dart';
-import 'package:vetner360/screen/buying/buy_pet.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/icons.dart';
 import 'package:flutter/material.dart';
 
-class GuestDrawer extends StatelessWidget {
-  const GuestDrawer({super.key});
+class DoctorDrawer extends StatelessWidget {
+  const DoctorDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
     dynamic size = MediaQuery.of(context).size;
+
     double height = size.height;
 
     return Drawer(
@@ -36,29 +36,6 @@ class GuestDrawer extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) {
                   return UserProfile();
-                },
-              ));
-            },
-          ),
-          ListTile(
-            key: ValueKey(2),
-            title: Row(
-              children: [
-                Icon(
-                  Icons.store,
-                  color: DoctorColor.textgrey,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text('Buy')
-              ],
-            ),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) {
-                  return const BuyPet();
                 },
               ));
             },

@@ -68,7 +68,7 @@ class _ChatUserItemState extends State<ChatUserItem> {
                   child: Image.asset(
                     img,
                     height: height / 10,
-                    width: height / 10,
+                    width: height / 9,
                     fit: BoxFit.fill,
                   ),
                 ),

@@ -60,7 +60,7 @@ class _ActivityRegisterFormState extends State<ActivityRegisterForm> {
           "petId": widget.petId,
         };
         final url =
-            Uri.parse("http:// 192.168.0.14:8080/mobile/api/pet/activity/");
+            Uri.parse("http://vetner360.koyeb.app//mobile/api/pet/activity/");
 
         final response =
             await http.post(url, headers: headers, body: jsonEncode(formData));

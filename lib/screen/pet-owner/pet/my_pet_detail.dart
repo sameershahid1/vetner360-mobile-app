@@ -46,7 +46,7 @@ class _MyPetDetailState extends State<MyPetDetail> {
               child: Column(
                 children: [
                   Image.network(
-                    'http:// 192.168.0.14:8080/${widget.petItem['imagePath']}',
+                    'http://vetner360.koyeb.app//${widget.petItem['imagePath']}',
                     height: 250,
                     width: MediaQuery.of(context).size.width,
                     fit: BoxFit.fill,

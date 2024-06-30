@@ -1,4 +1,4 @@
-import 'package:vetner360/component/pet-owner-registration/index.dart';
+import 'package:vetner360/component/pet-owner-registration/pet_owner_registration.dart';
 import 'package:vetner360/component/doctor-registration/doctor_registration.dart';
 import 'package:vetner360/component/guest-registration/index.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
