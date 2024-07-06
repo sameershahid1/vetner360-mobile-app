@@ -94,6 +94,8 @@ class UsersChatList extends StatelessWidget {
           child: PagedListView<int, dynamic>(
             pagingController: _.pagingController.value,
             builderDelegate: PagedChildBuilderDelegate<dynamic>(
+              animateTransitions: true,
+              transitionDuration: const Duration(milliseconds: 500),
               itemBuilder: (context, item, index) => ChatUserItem(
                 key: ValueKey(item['token']),
                 detailInfo: item,

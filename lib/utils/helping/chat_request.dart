@@ -1,9 +1,7 @@
-// import 'package:socket_io_client/socket_io_client.dart' as IO;
-// import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:socket_io_client_flutter/v3/socket_io_client_flutter.dart'
     as IO;
 import 'package:vetner360/globalclass/color.dart';
-import 'package:vetner360/helping/help.dart';
+import 'package:vetner360/utils/helping/help.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -62,7 +60,7 @@ class ChatRequest {
     }
   }
 
-  static Future<dynamic?> getLatestMessage(
+  static Future<dynamic> getLatestMessage(
       String roomId, BuildContext context) async {
     try {
       var isInternet = await Helping.checkConnection();

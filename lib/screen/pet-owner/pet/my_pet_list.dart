@@ -1,6 +1,6 @@
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:vetner360/component/pet-list-item/index.dart';
 import 'package:vetner360/controller/my_pet_list_controller.dart';
+import 'package:vetner360/component/pet-list-item/my_pet_list_item.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:flutter/material.dart';
@@ -47,11 +47,14 @@ class MyPetList extends StatelessWidget {
           child: PagedListView<int, dynamic>(
             pagingController: _.pagingController.value,
             builderDelegate: PagedChildBuilderDelegate<dynamic>(
+              animateTransitions: true,
+              transitionDuration: const Duration(milliseconds: 500),
               itemBuilder: (context, item, index) => Padding(
                 key: ValueKey(item['id']),
                 padding: const EdgeInsets.all(10.0),
                 child: PetListItem(
                   petItem: item,
+                  isBuy: true,
                 ),
               ),
             ),

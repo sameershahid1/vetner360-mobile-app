@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:vetner360/globalclass/color.dart';
-import 'package:vetner360/helping/help.dart';
+import 'package:vetner360/utils/helping/help.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Request {
-  Future<List> getMyPet(int page, int limit, BuildContext context) async {
+  static Future<List> getMyPet(
+      int page, int limit, BuildContext context) async {
     try {
       var isInternet = await Helping.checkConnection();
       if (!isInternet) {
@@ -37,7 +38,7 @@ class Request {
     }
   }
 
-  Future<dynamic> deletePet(
+  static Future<dynamic> deletePet(
       String id, String? userId, BuildContext context) async {
     var isInternet = await Helping.checkConnection();
     if (!isInternet) {
@@ -60,7 +61,7 @@ class Request {
     return data;
   }
 
-  Future<List> getMyPetActivity(
+  static Future<List> getMyPetActivity(
       int page, int limit, String petId, BuildContext context) async {
     try {
       var isInternet = await Helping.checkConnection();
@@ -93,7 +94,7 @@ class Request {
     }
   }
 
-  Future<dynamic> deletePetActivity(String id, String petId) async {
+  static Future<dynamic> deletePetActivity(String id, String petId) async {
     final token = await Helping.getToken("token");
     Map<String, String> headers = {
       'Authorization': 'Bearer $token',

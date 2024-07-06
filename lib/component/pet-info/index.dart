@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/intl.dart';
-import 'package:vetner360/globalclass/color.dart';
-import 'package:vetner360/globalclass/fontstyle.dart';
-import 'package:vetner360/screen/pet-owner/activity/activity-list.dart';
+import 'package:vetner360/screen/pet-owner/activity/activity_list.dart';
 import 'package:vetner360/screen/pet-owner/pet/pet_edit_form.dart';
+import 'package:vetner360/globalclass/fontstyle.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class PetInfo extends StatefulWidget {
   final petItem;
-  const PetInfo({super.key, required this.petItem});
+  final int? price;
+  const PetInfo({super.key, required this.petItem, this.price});
 
   @override
   State<PetInfo> createState() => _PetInfoState();
@@ -46,26 +46,102 @@ class _PetInfoState extends State<PetInfo> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Basic Info",
+                "Description: ",
+                textAlign: TextAlign.start,
                 style: isemibold.copyWith(
-                    fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              InkWell(
-                onTapDown: handleEditScreen,
-                child: Text(
-                  "Edit",
-                  style: isemibold.copyWith(
-                      fontSize: 18, color: Colors.blueAccent),
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
+              Text(
+                "${widget.petItem['note']}",
+                style: iregular.copyWith(
+                  fontSize: 16,
+                ),
+              )
             ],
           ),
           SizedBox(
-            height: 10,
+            height: 25,
+          ),
+          Container(
+            child: widget.price != null
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        child: Row(
+                          children: [
+                            Container(
+                              child: Icon(
+                                Icons.price_change,
+                                color: Colors.blueAccent,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                    10.0), // Set border radius
+                                color: Color.fromARGB(28, 33, 149, 243),
+                              ),
+                              padding: EdgeInsets.all(8),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Price",
+                                  style: isemibold.copyWith(fontSize: 20),
+                                ),
+                                Text(
+                                  '${widget.price} PKR',
+                                  style: isemibold.copyWith(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.normal),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                : null,
+          ),
+          SizedBox(
+            height: widget.price != null ? 25 : 0,
+          ),
+          Container(
+            child: widget.price != null
+                ? null
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Basic Info",
+                        style: isemibold.copyWith(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      InkWell(
+                        onTapDown: handleEditScreen,
+                        child: Text(
+                          "Edit",
+                          style: isemibold.copyWith(
+                              fontSize: 18, color: Colors.blueAccent),
+                        ),
+                      ),
+                    ],
+                  ),
+          ),
+          SizedBox(
+            height: widget.price != null ? 0 : 10,
           ),
           Container(
             child: Row(
@@ -151,7 +227,7 @@ class _PetInfoState extends State<PetInfo> {
           ),
           Container(
             child: Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
                   child: Row(
@@ -190,7 +266,6 @@ class _PetInfoState extends State<PetInfo> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 55),
                   child: Row(
                     children: [
                       Container(

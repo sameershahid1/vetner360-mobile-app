@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vetner360/component/edit-doctor-profile/edit_doctor_profile.dart';
 import 'package:vetner360/component/edit-user-profile/edit_user_profile.dart';
-import 'package:vetner360/helping/help.dart';
+import 'package:vetner360/utils/helping/help.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 
 class EditProfileController extends GetxController {

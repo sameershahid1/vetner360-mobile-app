@@ -1,6 +1,6 @@
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:vetner360/helping/chat_request.dart';
-import 'package:vetner360/helping/help.dart';
+import 'package:vetner360/utils/helping/chat_request.dart';
+import 'package:vetner360/utils/helping/help.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

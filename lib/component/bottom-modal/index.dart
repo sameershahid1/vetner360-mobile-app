@@ -1,8 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:nb_utils/nb_utils.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
-import 'package:vetner360/screen/pet-owner/activity/select-activity-pet.dart';
+import 'package:vetner360/screen/pet-owner/activity/select_activity_pet.dart';
 import 'package:vetner360/screen/pet-owner/pet/camera.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 import 'package:get/get.dart';

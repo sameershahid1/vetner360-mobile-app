@@ -1,21 +1,21 @@
-import 'package:flutter/material.dart';
+import 'package:vetner360/screen/pet-owner/activity/activity_register-form.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:vetner360/component/activity-list-item/index.dart';
+import 'package:vetner360/component/pet-list-item/my_pet_list_item.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
-import 'package:vetner360/helping/request.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 import 'package:vetner360/globalclass/color.dart';
+import 'package:vetner360/utils/helping/request.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ActivityList extends StatefulWidget {
-  final String petId;
-  const ActivityList({super.key, required this.petId});
+class SelectActivityPet extends StatefulWidget {
+  const SelectActivityPet({super.key});
 
   @override
-  State<ActivityList> createState() => _ActivityListState();
+  State<SelectActivityPet> createState() => _SelectActivityPetState();
 }
 
-class _ActivityListState extends State<ActivityList> {
+class _SelectActivityPetState extends State<SelectActivityPet> {
   PageController pageController = PageController();
   final themedata = Get.put(DoctorThemecontroler());
   double height = 0.00;
@@ -29,16 +29,14 @@ class _ActivityListState extends State<ActivityList> {
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
       try {
-        Request()
-            .getMyPetActivity(pageKey, _limit, widget.petId, context)
-            .then((latestPetActivity) {
+        Request.getMyPet(pageKey, _limit, context).then((latestPets) {
           setState(() {
-            final isLastPage = latestPetActivity.length < this._limit;
+            final isLastPage = latestPets.length < this._limit;
             if (isLastPage) {
-              _pagingController.appendLastPage(latestPetActivity);
+              _pagingController.appendLastPage(latestPets);
             } else {
               final nextPageKey = pageKey + 1;
-              _pagingController.appendPage(latestPetActivity, nextPageKey);
+              _pagingController.appendPage(latestPets, nextPageKey);
             }
           });
         });
@@ -56,6 +54,14 @@ class _ActivityListState extends State<ActivityList> {
     super.dispose();
   }
 
+  void selectPet(String petId) async {
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) {
+        return ActivityRegisterForm(petId: petId);
+      },
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
@@ -67,26 +73,24 @@ class _ActivityListState extends State<ActivityList> {
           surfaceTintColor:
               themedata.isdark ? DoctorColor.black : DoctorColor.white,
           title: Text(
-            "Pet Activity",
+            "Select Pet",
             style: isemibold.copyWith(
                 fontSize: 26,
                 color:
                     themedata.isdark ? DoctorColor.white : DoctorColor.black),
           ),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: RefreshIndicator(
             onRefresh: () => Future.sync(() => _pagingController.refresh()),
             child: PagedListView<int, dynamic>(
               pagingController: _pagingController,
               builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                animateTransitions: true,
-                transitionDuration: const Duration(milliseconds: 500),
                 itemBuilder: (context, item, index) => Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: ActivityListItem(
-                    petActivityItem: item,
-                    petId: widget.petId,
+                  child: PetListItem(
+                    petItem: item,
+                    selectPet: selectPet,
+                    isBuy: false,
                   ),
                 ),
               ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
-import 'package:vetner360/helping/request.dart';
+import 'package:vetner360/utils/helping/request.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 import 'package:get/get.dart';
 
@@ -26,8 +26,8 @@ class _ActivityListItemState extends State<ActivityListItem> {
   MenuItem? selectedItem;
 
   Future<void> deletePet() async {
-    await Request()
-        .deletePetActivity(widget.petActivityItem['token'], widget.petId);
+    await Request.deletePetActivity(
+        widget.petActivityItem['token'], widget.petId);
   }
 
   @override

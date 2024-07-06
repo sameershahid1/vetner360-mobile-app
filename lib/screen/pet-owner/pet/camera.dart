@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/screen/pet-owner/pet/display.dart';
@@ -31,6 +32,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
   String _flashValue = flashDropDownItems.first;
   IconData? _flashIcon = flashIconList["Auto"];
   final themedata = Get.put(DoctorThemecontroler());
+
   double height = 0.00;
   double width = 0.00;
   dynamic size;
@@ -79,6 +81,22 @@ class TakePictureScreenState extends State<TakePictureScreen> {
       );
     } catch (e) {
       print(e);
+    }
+  }
+
+  Future pickImage() async {
+    final imagePicker = ImagePicker();
+    final pickedImage =
+        await imagePicker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      await Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => DisplayPictureScreen(
+            imagePath: pickedImage.path,
+            image: pickedImage,
+          ),
+        ),
+      );
     }
   }
 

@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:vetner360/globalclass/color.dart';
-import 'package:vetner360/globalclass/fontstyle.dart';
-import 'package:vetner360/helping/help.dart';
-import 'package:vetner360/helping/request.dart';
 import 'package:vetner360/screen/pet-owner/pet/my_pet_detail.dart';
 import 'package:vetner360/screen/pet-owner/pet/pet_edit_form.dart';
+import 'package:vetner360/utils/helping/request.dart';
 import 'package:vetner360/theme/themecontroller.dart';
+import 'package:vetner360/globalclass/fontstyle.dart';
+import 'package:vetner360/utils/helping/help.dart';
+import 'package:vetner360/globalclass/color.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 enum MenuItem { Edit, Delete }
@@ -13,7 +13,17 @@ enum MenuItem { Edit, Delete }
 class PetListItem extends StatefulWidget {
   final petItem;
   final Function? selectPet;
-  PetListItem({super.key, this.petItem, this.selectPet});
+  final bool isBuy;
+  final String? phoneNumber;
+  final int? price;
+  PetListItem({
+    super.key,
+    this.petItem,
+    this.selectPet,
+    required this.isBuy,
+    this.phoneNumber,
+    this.price,
+  });
 
   @override
   State<PetListItem> createState() => _PetListItemState();
@@ -32,11 +42,14 @@ class _PetListItemState extends State<PetListItem> {
     height = size.height;
     width = size.width;
 
-    openPetDetail() {
+    void openPetDetail() {
       Navigator.push(context, MaterialPageRoute(
         builder: (context) {
           return MyPetDetail(
             petItem: widget.petItem,
+            isBuyer: widget.isBuy,
+            price: widget.price,
+            phoneNumber: widget.phoneNumber,
           );
         },
       ));
@@ -44,7 +57,7 @@ class _PetListItemState extends State<PetListItem> {
 
     Future<void> deletePet() async {
       String? userId = await Helping.getToken("id");
-      await Request().deletePet(widget.petItem['token'], userId, context);
+      await Request.deletePet(widget.petItem['token'], userId, context);
     }
 
     return InkWell(
@@ -135,7 +148,7 @@ class _PetListItemState extends State<PetListItem> {
                           ],
                         ),
                         Container(
-                          child: widget.selectPet == null
+                          child: !widget.isBuy && widget.selectPet == null
                               ? PopupMenuButton<MenuItem>(
                                   initialValue: selectedItem,
                                   onSelected: (MenuItem item) {

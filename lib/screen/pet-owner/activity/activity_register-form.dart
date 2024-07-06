@@ -5,9 +5,8 @@ import 'package:form_validator/form_validator.dart';
 import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/globalclass/icons.dart';
-import 'package:vetner360/helping/help.dart';
+import 'package:vetner360/utils/helping/help.dart';
 import 'package:vetner360/screen/pet-owner/home/dashboard.dart';
-import 'package:vetner360/screen/pet-owner/home/pannel.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
@@ -123,19 +122,19 @@ class _ActivityRegisterFormState extends State<ActivityRegisterForm> {
     size = MediaQuery.of(context).size;
     height = size.height;
     width = size.width;
+
     return Scaffold(
-        appBar: AppBar(
-          surfaceTintColor: DoctorColor.white,
-          title: Text(
-            "Add Activity".tr,
-            style: isemibold.copyWith(
-                fontSize: 20,
-                color:
-                    themedata.isdark ? DoctorColor.white : DoctorColor.black),
-          ),
+      appBar: AppBar(
+        surfaceTintColor: DoctorColor.white,
+        title: Text(
+          "Add Activity".tr,
+          style: isemibold.copyWith(
+              fontSize: 20,
+              color: themedata.isdark ? DoctorColor.white : DoctorColor.black),
         ),
-        body: SingleChildScrollView(
-            child: Padding(
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
           padding: EdgeInsets.symmetric(
               horizontal: width / 36, vertical: height / 36),
           child: Form(
@@ -297,6 +296,8 @@ class _ActivityRegisterFormState extends State<ActivityRegisterForm> {
               ],
             ),
           ),
-        )));
+        ),
+      ),
+    );
   }
 }

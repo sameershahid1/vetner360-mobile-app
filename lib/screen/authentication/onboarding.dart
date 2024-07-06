@@ -5,6 +5,7 @@ import 'package:vetner360/globalclass/color.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
 import 'package:vetner360/globalclass/icons.dart';
 import 'package:vetner360/screen/authentication/signin.dart';
+import 'package:vetner360/screen/public_dashboard.dart';
 import 'package:vetner360/theme/themecontroller.dart';
 
 class DoctorOnboarding extends StatefulWidget {
@@ -183,7 +184,7 @@ class _DoctorOnboardingState extends State<DoctorOnboarding> {
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
-                    return const Signin();
+                    return const PublicDashboard();
                   },
                 ));
               },
@@ -210,17 +211,26 @@ class _DoctorOnboardingState extends State<DoctorOnboarding> {
             child: InkWell(
               splashColor: DoctorColor.transparent,
               highlightColor: DoctorColor.transparent,
-              onTap: () {
+              onTapDown: (TapDownDetails data) {
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
-                    return const Signin();
+                    return const PublicDashboard();
                   },
                 ));
               },
-              child: Center(
-                child: Text("Skip".tr,
-                    style: iregular.copyWith(
-                        fontSize: 14, color: DoctorColor.grey)),
+              child: GestureDetector(
+                onTapDown: (TapDownDetails data) {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return const PublicDashboard();
+                    },
+                  ));
+                },
+                child: Center(
+                  child: Text("Skip".tr,
+                      style: iregular.copyWith(
+                          fontSize: 14, color: DoctorColor.grey)),
+                ),
               ),
             ),
           )

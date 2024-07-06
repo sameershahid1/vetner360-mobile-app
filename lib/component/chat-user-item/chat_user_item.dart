@@ -1,8 +1,8 @@
 import 'package:vetner360/screen/chat/user_chat.dart';
 import 'package:vetner360/globalclass/fontstyle.dart';
-import 'package:vetner360/helping/chat_request.dart';
+import 'package:vetner360/utils/helping/chat_request.dart';
 import 'package:vetner360/globalclass/icons.dart';
-import 'package:vetner360/helping/help.dart';
+import 'package:vetner360/utils/helping/help.dart';
 import 'package:flutter/material.dart';
 
 class ChatUserItem extends StatefulWidget {

@@ -1,6 +1,6 @@
-import 'package:vetner360/helping/chat_request.dart';
+import 'package:vetner360/utils/helping/chat_request.dart';
 import 'package:vetner360/screen/chat/users_chat_list.dart';
-import 'package:vetner360/component/exit-dialog/exit_dialog.dart';
+import 'package:vetner360/component/dialog/exit_dialog.dart';
 import 'package:vetner360/screen/pet-owner/pet/my_pet_list.dart';
 import 'package:vetner360/screen/pet-owner/home/pannel.dart';
 import 'package:vetner360/globalclass/icons.dart';
